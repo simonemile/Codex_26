@@ -2,9 +2,9 @@ package Codex_26;
 
 public class Segnalino {
 		
-		Giocatore giocatore;
 		private int pos;
-		private String colore;
+		final private String colore;
+		final private String coloreSecondario;
 		private boolean primo;
 		
 		
@@ -20,10 +20,10 @@ public class Segnalino {
 		public void setColore(String colore) {
 			this.colore = colore;
 		}
-		public boolean isPrimo() {
-			return primo;
+		public String getsecondarioColore() {
+			return coloreSecondario;
 		}
-		public void setPrimo(boolean primo) {
-			this.primo = false;
+		public void setColore(String coloreSecondario) {
+			this.coloreSecondario = coloreSecondario;
 		}
 }

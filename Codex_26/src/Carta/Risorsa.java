@@ -4,9 +4,17 @@ import java.util.List;
 
 public class Risorsa extends Carta {
 
-	public Risorsa(String tipo, String colore, List<Icona> icone) {
+	public Risorsa(String tipo, String colore, List<Icona> icone,Angolo[] angolo) {
 		super(tipo, colore, icone);
-		// TODO Auto-generated constructor stub
+		this.angolo=angolo;
+	}
+	
+	
+	 public Angolo[] getAngolo() {
+			return angolo;
+		}
+	public void setAngolo(Angolo[] angolo) {
+		this.angolo = angolo;
 	}
 
 	@Override

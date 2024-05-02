@@ -1,16 +1,19 @@
 package Codex_26;
+import Carta.CartaObiettivo;
 
 public class Giocatore {
 		
-		private int id;
-		private String nome;
-		private int punti;
-		Tavolo tavolo;
+		final private int id;
+		final private String nome;
+		private Segnalino segnalino;
+		private Tavolo tavolo;
+		private CartaObiettivo obiettivoPersonale;
+		private int posizioneGiocatore;
 		
 		
-		public Giocatore() {
-			this.punti = 0;
-			this.nome = "";
+		public Giocatore(String nome, int posizioneGiocatore) {
+			this.nome = nome;
+			this.posizioneGiocatore=posizioneGiocatore;
 		}
 		
 		public int getId() {
@@ -25,11 +28,14 @@ public class Giocatore {
 		public void setNome(String nome) {
 			this.nome = nome;
 		}
-		public int getPunti() {
-			return punti;
+		public int getposizioneGiocatore() {
+			return posizioneGiocatore;
 		}
-		public void setPunti(int punti) {
-			this.punti = punti;
+		public void posizioneGiocatore(int posizioneGiocatore) {
+			this.posizioneGiocatore = posizioneGiocatore;
+		}
+		void impostaColoreSegnalino() {
+			return segnalino.getColore();
 		}
 		
 		

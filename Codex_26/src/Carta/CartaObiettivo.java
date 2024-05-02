@@ -5,8 +5,9 @@ import java.util.List;
 class CartaObiettivo extends Carta {
     int puntiVittoria; // Punti Vittoria associati all'obiettivo
     private boolean personale;
+    private Angolo[] angolo;
     
-    public CartaObiettivo(String tipo, String colore, List<Icona> icone, int puntiVittoria) {
+    public CartaObiettivo(String tipo, String colore, List<Icona> icone, int puntiVittoria,Angolo[] angolo) {
         super(tipo, colore, icone);
         this.puntiVittoria = puntiVittoria;
         this.personale = false;
@@ -30,4 +31,6 @@ class CartaObiettivo extends Carta {
 	public void setPersonale(boolean personale) {
 		this.personale = personale;
 	}
+	
+
 }
