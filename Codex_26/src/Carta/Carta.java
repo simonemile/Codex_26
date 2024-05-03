@@ -3,15 +3,15 @@ package Carta;
 import java.util.List;
 
 public abstract class Carta {
-    String colore; // Colore della carta (es. "Verde", "Blu", "Viola", "Arancione")
     List<Icona> icone; // Lista delle icone presenti sulla carta
     private boolean girata;
+    private final int ID;
     
-    public Carta(String tipo, String colore, List<Icona> icone, boolean girata) {
-        this.tipo = tipo;
+    public Carta(int ID, List<Icona> icone) {
         this.colore = colore;
         this.icone = icone;
         this.girata = false;
+        this.ID=ID;
     }
     
     // Metodo astratto per ottenere il valore dei Punti Vittoria associato alla carta
@@ -20,9 +20,16 @@ public abstract class Carta {
 	public boolean isGirata() {
 		return girata;
 	}
-
 	public void setGirata(boolean girata) {
 		this.girata = girata;
+	}
+	
+	public boolean getID() {
+		return ID;
+	}
+
+	public void setID(int ID) {
+		this.ID=ID;
 	}
 	
 	abstract void ControlloGirata();

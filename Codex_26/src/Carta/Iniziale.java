@@ -3,9 +3,11 @@ package Carta;
 import java.util.List;
 
 public class Iniziale extends Carta {
-
-	public Iniziale(String tipo, String colore, List<Icona> icone, boolean girata) {
-		super(tipo, colore, icone, girata);
+	
+	private final Angolo[] angoliFronte=new Angolo[4];
+	private final Angolo[] angoliRetro=new Angolo[4];
+	public Iniziale(int ID, String colore, List<Icona> icone, boolean girata) {
+		super(ID, colore, icone, girata);
 	}
 	
 	public Angolo[] getAngolo() {

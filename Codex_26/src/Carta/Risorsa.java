@@ -3,6 +3,8 @@ package Carta;
 import java.util.List;
 
 public class Risorsa extends Carta {
+	
+	Angolo angolo
 
 	public Risorsa(String tipo, String colore, List<Icona> icone,Angolo[] angolo) {
 		super(tipo, colore, icone);

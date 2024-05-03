@@ -7,8 +7,8 @@ class CartaObiettivo extends Carta {
     private boolean personale;
     private Angolo[] angolo;
     
-    public CartaObiettivo(String tipo, String colore, List<Icona> icone, int puntiVittoria,Angolo[] angolo) {
-        super(tipo, colore, icone);
+    public CartaObiettivo(int ID, String tipo, String colore, List<Icona> icone, int puntiVittoria,Angolo[] angolo) {
+        super(ID, tipo, colore, icone);
         this.puntiVittoria = puntiVittoria;
         this.personale = false;
     }

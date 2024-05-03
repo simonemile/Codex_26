@@ -3,25 +3,20 @@ import Carta.CartaObiettivo;
 
 public class Giocatore {
 		
-		final private int id;
 		final private String nome;
 		private Segnalino segnalino;
 		private Tavolo tavolo;
 		private CartaObiettivo obiettivoPersonale;
 		private int posizioneGiocatore;
+		private ArrayList<Carta> carteInMano;
 		
-		
-		public Giocatore(String nome, int posizioneGiocatore) {
+		public Giocatore(String nome, int posizioneGiocatore, Tavolo tavolo, Segnalino segnalino) {
 			this.nome = nome;
 			this.posizioneGiocatore=posizioneGiocatore;
+			this.tavolo=tavolo;
+			this.segnalino=segnalino;
 		}
-		
-		public int getId() {
-			return id;
-		}
-		public void setId(int id) {
-			this.id = id;
-		}
+
 		public String getNome() {
 			return nome;
 		}

@@ -7,15 +7,15 @@ public class Main {
 
 	public static void main(String[] args) {
 			
-		// Creazione del mazzo di carte
-        Mazzo mazzo = new Mazzo();
-        // Aggiunta delle carte al mazzo
+
         boolean fine =false;
         Scanner scanner = new Scanner(System.in);
         int numeroGiocatori;
         String nome=new String();
         String nuovoGiocatore=new String();
         ArrayList<Giocatore> giocatori = new ArrayList<Giocatori>();
+        Tavolo[]tavolo;
+        Segnalino[]segnalino;
         do {
         	
         	do {
@@ -27,15 +27,18 @@ public class Main {
         		System.out.println("Inserire nome nuovo giocatore:");
         		nome=scanner.nextLine();
         		numeroGiocatori++;
-        		giocatori.add(new Giocatore(nome,numeroGiocatori));
+        		tavolo[numeroGiocatori]=new Tavolo();
+        		segnalino[numeroGiocatori]=new Segnalino();
+        		giocatori.add(new Giocatore(nome,numeroGiocatori,tavolo[numeroGiocatori],segnalino[numeroGiocatori]));
         		if(numeroGiocatori==1) {
         			giocatori.get(0).impostaColoreSegnalino("Nero");
         		}
         	}while(nuovoGiocatore.matches("s")&&(numeroGiocatori<2||numeroGiocatori<=4));
-        	//Tavolo[size] tavolo=new Tavolo[size]();
+        	
+        	
         
         
-        
+        	
         }while(fine!=true);
 	}
 

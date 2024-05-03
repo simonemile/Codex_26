@@ -26,7 +26,7 @@ public class Angolo {
 		public void setPosizione(int[] posizione) {
 			this.posizione = posizione;
 		}
-		public boolean getPresenza() {
+		public boolean isPresenza() {
 			return presenza;
 		}
 		public void setPresenza(boolean presenza) {
@@ -35,6 +35,8 @@ public class Angolo {
 		public boolean getNascosto() {
 			return nascosto;
 		}
-		
+		public void setNascosto(){
+			this.nascosto=true;
+		}
 		
 }
