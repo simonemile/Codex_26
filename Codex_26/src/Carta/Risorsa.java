@@ -1,11 +1,10 @@
 package Carta;
 
-
 public class Risorsa extends Carta {
 	
 	private final Angolo[] angoliFronte=new Angolo[4];
 	private final Angolo[] angoliRetro=new Angolo[5];
-	private String regno;
+	private final Icona regno;
 	
 	public Risorsa(String regno, Icona a1, Icona a2, Icona a3, Icona a4, Icona aC, Icona aR1,Icona aR2,Icona aR3,Icona aR4) {
 		this.regno=regno;
@@ -23,7 +22,14 @@ public class Risorsa extends Carta {
 		}
 		
 	}
-
+	
+	public Icona getRegno() {
+		return regno;
+	}
+	public void setRegno(Icona regno) {
+		this.regno = regno;
+	}
+	
 	@Override
 	public int getValorePV() {
 		return 0;

@@ -1,20 +1,26 @@
 package Carta; 
-import java.util.Collection;
+import java.util.Collections;
+
+import prova.CartaPunteggioOro;
 
 public class MazzoIniziali extends Mazzo{
 	private ArrayList<Iniziale> mazzo;
 	
+
+
 	@Override
-	public MazzoIniziali() {
+	public void aggiungiCarta() {
 		mazzo=new ArrayList<Iniziale>(6);
-		mazz.add()//da aggiungere tutte le carte iniziali
+		mazzo.add()=(cI1=new Iniziale());
 		
 	}
 
 	@Override
-	public Iniziali pesca() {
-		Collection.shuffle(mazzo);
-	    Iniziale nuovaCarta= mazzo.get(0);
+	public void pescaCarta() {
+		Collections.shuffle(mazzo);
+		Iniziale nuovaCarta= mazzo.get(0);
 	    mazzo.remove(0);
+	}
+		
 	}
 }

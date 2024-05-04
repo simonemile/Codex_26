@@ -11,8 +11,8 @@ public class Segnalino {
 		public int getPos() {
 			return pos;
 		}
-		public void setPos(int pos) {
-			this.pos = pos;
+		public void setPos(int incremento) {
+			this.pos += incremento;
 		}
 		public String getColore() {
 			return colore;

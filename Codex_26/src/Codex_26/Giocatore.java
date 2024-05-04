@@ -29,7 +29,7 @@ public class Giocatore {
 		public void posizioneGiocatore(int posizioneGiocatore) {
 			this.posizioneGiocatore = posizioneGiocatore;
 		}
-		void impostaColoreSegnalino() {
+		public void impostaColoreSegnalino() {
 			return segnalino.getColore();
 		}
 		

@@ -17,7 +17,7 @@ public abstract class Carta {
 		return girata;
 	}
 	public void setGirata(boolean girata) {
-		this.girata = girata;
+		this.girata = true;
 	}
 	
 }

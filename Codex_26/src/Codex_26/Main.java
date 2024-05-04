@@ -1,6 +1,6 @@
 package Codex_26;
 
-import Carta.Mazzo;
+import Carta.*;
 import java.util.Scanner;
 
 public class Main {

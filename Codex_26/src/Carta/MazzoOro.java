@@ -1,14 +1,15 @@
 package Carta;
 
-import java.util.Collection;
+import java.util.Collections;
 
 public class MazzoOro extends Mazzo{
 	private ArrayList<CartaPunteggioOro> mazzo;
 	
 	
-	public Iniziali pesca() {
-		Collection.shuffle(mazzo);
-	    Iniziale nuovaCarta= mazzo.get(0);
+	@Override
+	public void pescaCarta() {
+		Collections.shuffle(mazzo);
+		CartaPunteggioOro nuovaCarta= mazzo.get(0);
 	    mazzo.remove(0);
 	}
 }
