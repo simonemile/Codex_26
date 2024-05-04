@@ -1,5 +1,7 @@
 package Codex_26;
-import Carta.CartaObiettivo;
+
+import Carta.*;
+import java.util.ArrayList;
 
 public class Giocatore {
 		

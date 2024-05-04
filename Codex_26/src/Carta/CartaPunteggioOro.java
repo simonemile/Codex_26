@@ -1,4 +1,6 @@
 package Carta;
+
+import Codex_26.Tavolo;
 import java.util.ArrayList;
 
 class CartaPunteggioOro extends Carta {
@@ -31,9 +33,10 @@ class CartaPunteggioOro extends Carta {
 		
 	}
 	
-	public boolean verificaRisorse(Icona[] risorseMinime, ArrayList<Icone> risorseTavolo) {
+	public boolean verificaRisorse(Icona[] risorseMinime,Tavolo tavolo) {
 		for(int i=0; i<5; i++) {
-			if(!risorseTavolo.contains(risorseMinime[i])) {
+			ArrayList<Icona> risorseDisponibili=tavolo.getRisorseDisponibili();
+			if(!risorseDisponibili.contains(risorseMinime[i])) {
 				return false;
 			}
 		}

@@ -1,7 +1,7 @@
 package Carta; 
-import java.util.Collections;
 
-import prova.CartaPunteggioOro;
+import java.util.Collections;
+import java.util.ArrayList;
 
 public class MazzoIniziali extends Mazzo{
 	private ArrayList<Iniziale> mazzo;
@@ -22,5 +22,5 @@ public class MazzoIniziali extends Mazzo{
 	    mazzo.remove(0);
 	}
 		
-	}
+	
 }

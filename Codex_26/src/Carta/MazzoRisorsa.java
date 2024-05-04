@@ -1,5 +1,6 @@
 package Carta;
 
+import java.util.ArrayList;
 import java.util.Collections;
 
 public class MazzoRisorsa extends Mazzo{

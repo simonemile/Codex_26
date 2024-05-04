@@ -1,7 +1,5 @@
 package Carta;
 
-import prova.Icona;
-
 public class Iniziale extends Carta {
 	
 	private final Angolo[] angoliFronte=new Angolo[4];
