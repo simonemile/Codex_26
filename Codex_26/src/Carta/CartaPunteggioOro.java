@@ -23,9 +23,5 @@ class CartaPunteggioOro extends Carta {
         return this.valorePV;
     }
 
-	@Override
-	boolean ControlloGirata() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
 }

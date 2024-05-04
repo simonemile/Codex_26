@@ -18,11 +18,7 @@ class CartaObiettivo extends Carta {
         return this.puntiVittoria;
     }
 
-	@Override
-	boolean ControlloGirata() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
 
 	public boolean isPersonale() {
 		return personale;
