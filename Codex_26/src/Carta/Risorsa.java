@@ -6,9 +6,11 @@ public class Risorsa extends Carta {
 	private final Angolo[] angoliRetro=new Angolo[5];
 	private final Icona regno;
 	
+	//costruttore carte Risorsa, ricevono il regno di appartenenza e simboli di ciascun angolo della carta per fronte/retro
+	//la carta avrà icone diversi agli angoli a seconda se questa sia girata o meno
 	public Risorsa(String regno, Icona a1, Icona a2, Icona a3, Icona a4, Icona aC, Icona aR1,Icona aR2,Icona aR3,Icona aR4) {
 		this.regno=regno;
-		if(isGirata()==true) {
+		if(isGirata()) {
 			this.angoliRetro[0]=new Angolo(aR1);
 			this.angoliRetro[1]=new Angolo(aR2);
 			this.angoliRetro[2]=new Angolo(aR3);
@@ -30,13 +32,4 @@ public class Risorsa extends Carta {
 		this.regno = regno;
 	}
 	
-	@Override
-	public int getValorePV() {
-		return 0;
-	}
-	@Override
-	public boolean riceviPunti() {
-		return false;
-	}
-
 }

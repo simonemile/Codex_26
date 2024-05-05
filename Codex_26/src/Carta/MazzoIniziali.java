@@ -14,13 +14,5 @@ public class MazzoIniziali extends Mazzo{
 		mazzo.add()=(cI1=new Iniziale());
 		
 	}
-
-	@Override
-	public void pescaCarta() {
-		Collections.shuffle(mazzo);
-		Iniziale nuovaCarta= mazzo.get(0);
-	    mazzo.remove(0);
-	}
 		
-	
 }

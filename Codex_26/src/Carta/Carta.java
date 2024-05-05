@@ -3,17 +3,15 @@ package Carta;
 import java.util.List;
 
 public abstract class Carta {
+	
     private boolean girata;
-	abstract boolean rceviPunti();
-    abstract int getValorePV();
-    public void girare() {
-    	if(girata==true) {
-    		girata=false;
-    	}else {
-    		girata=true;
-    	}
+    
+    //metodo per girare le carte
+    public void girare(Carta carta) {
+    	girata=!girata;
     }
-	public boolean isGirata() {
+    
+    public boolean isGirata() {
 		return girata;
 	}
 	public void setGirata(boolean girata) {

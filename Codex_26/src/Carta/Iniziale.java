@@ -4,8 +4,11 @@ public class Iniziale extends Carta {
 	
 	private final Angolo[] angoliFronte=new Angolo[4];
 	private final Angolo[] angoliRetro=new Angolo[6];
+	
+	//costruttore delle carte iniziali in cui vengono chiamati i simboli presenti sul fronte e sul retro della carta
+	//la carta avrà icone diversi agli angoli a seconda se questa sia girata o meno
 	public Iniziale(Icona a1, Icona a2, Icona a3, Icona a4, Icona aC1, Icona aC2,Icona aR1,Icona aR2,Icona aR3,Icona aR4) {
-		if(isGirata()==true) {
+		if(isGirata()) {
 			this.angoliRetro[0]=new Angolo(aR1);
 			this.angoliRetro[1]=new Angolo(aR2);
 			this.angoliRetro[2]=new Angolo(aR3);
@@ -20,15 +23,4 @@ public class Iniziale extends Carta {
 		}
 	}
 	
-	
-	@Override
-	public int getValorePV() {
-		return 0;
-	}
-	@Override
-	public boolean riceviPunti() {
-		return false;
-	}
-		
-
 }

@@ -10,9 +10,17 @@ class CartaPunteggioOro extends Carta {
 	private final Icona regno;
 	private int punteggio;
 	
+	//costruttore cartaPunteggioOro, riceve come parametri punti assegnati, le risorse per poterla usare e le proprietà degli angoli retro/fronte
+	//la carta avrà icone diversi agli angoli a seconda se questa sia girata o meno
 	public CartaPunteggioOro(int punteggio,Icona regno, Icona r1,Icona r2, Icona r3, Icona r4, Icona r5,Icona aCR,Icona a1R,Icona a2R,Icona a3R,Icona a4R, Icona a1, Icona a2, Icona a3, Icona a4) {
 		this.regno=regno;
 		if(isGirata()==false) {	
+			this.angoliRetro[0]=new Angolo(a1R);
+			this.angoliRetro[1]=new Angolo(a2R);
+			this.angoliRetro[2]=new Angolo(a3R);
+			this.angoliRetro[3]=new Angolo(a4R);
+			this.angoliRetro[4]=new Angolo(aCR);
+		}else {
 			this.punteggio=punteggio;
 			this.risorseMinime[0]=r1;
 			this.risorseMinime[1]=r2;
@@ -23,16 +31,11 @@ class CartaPunteggioOro extends Carta {
 			this.angoliFronte[1]=new Angolo(a2);
 			this.angoliFronte[2]=new Angolo(a3);
 			this.angoliFronte[3]=new Angolo(a4);
-		}else {
-			this.angoliRetro[0]=new Angolo(a1R);
-			this.angoliRetro[1]=new Angolo(a2R);
-			this.angoliRetro[2]=new Angolo(a3R);
-			this.angoliRetro[3]=new Angolo(a4R);
-			this.angoliRetro[4]=new Angolo(aCR);
 		}
 		
 	}
 	
+	//metodo per verificare che le condizioni per poter piazzare la carta siano incontrate
 	public boolean verificaRisorse(Icona[] risorseMinime,Tavolo tavolo) {
 		for(int i=0; i<5; i++) {
 			ArrayList<Icona> risorseDisponibili=tavolo.getRisorseDisponibili();
@@ -42,7 +45,6 @@ class CartaPunteggioOro extends Carta {
 		}
 		return true;
 	}
-	
 	
 	
 	public int getPunteggio() {
@@ -60,15 +62,5 @@ class CartaPunteggioOro extends Carta {
 	public Icona getRegno() {
 		return regno;
 	}
-	
-	@Override
-	public int getValorePV() {
-		return 0;
-	}
-	@Override
-	public boolean riceviPunti() {
-		return false;
-	}
-
 
 }

@@ -5,8 +5,6 @@ public class Segnalino {
 		private int pos;
 		final private String colore;
 		final private String coloreSecondario;
-		private boolean primo;
-		
 		
 		public int getPos() {
 			return pos;

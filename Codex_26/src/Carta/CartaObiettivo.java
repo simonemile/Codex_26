@@ -3,30 +3,31 @@ package Carta;
 import java.util.List;
 
 class CartaObiettivo extends Carta {
-    int puntiVittoria; // Punti Vittoria associati all'obiettivo
-    private boolean personale;
-    private Angolo[] angolo;
-    
-    public CartaObiettivo(int ID, String tipo, String colore, List<Icona> icone, int puntiVittoria,Angolo[] angolo) {
-        super(ID, tipo, colore, icone);
-        this.puntiVittoria = puntiVittoria;
-        this.personale = false;
-    }
-    
-    @Override
-    public int getValorePV() {
-        return this.puntiVittoria;
-    }
-
-
-
-	public boolean isPersonale() {
-		return personale;
-	}
-
-	public void setPersonale(boolean personale) {
-		this.personale = personale;
-	}
 	
+	private int punteggio;
+	private Icona regno;
+    private boolean personale=false;
+    private boolean girata;
+    private Icona[] risorsaNecessaria;
+    
+    //costruttore per carte obiettivo con risorse minime necessarie sul tavolo
+    public CartaObiettivo(int punteggio, Icona r1, Icona r2, Icona r3, Icona r4) {
+    	this.girata=false;
+    	this.punteggio=punteggio;
+    	this.risorsaNecessaria[0]=r1;
+    	this.risorsaNecessaria[1]=r2;
+    	this.risorsaNecessaria[2]=r3;
+    	this.risorsaNecessaria[3]=r4;
+    }
+    
+    //
+    public CartaObiettivo() {
+    	
+    }
+    
+    public void rendiPersonale(CartaObiettivo cartaObiettivoPersonale) {
+    	super.girare(cartaObiettivoPersonale);
+    	
+    }
 
 }

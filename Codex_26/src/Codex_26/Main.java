@@ -17,6 +17,7 @@ public class Main {
         ArrayList<Giocatore> giocatori = new ArrayList<Giocatori>();
         Tavolo[]tavolo;
         Segnalino[]segnalino;
+        MazzoIniziali mIniz=new MazzoIniziali();
         do {
         	
         	do {
@@ -30,7 +31,8 @@ public class Main {
         		numeroGiocatori++;
         		tavolo[numeroGiocatori]=new Tavolo();
         		segnalino[numeroGiocatori]=new Segnalino();
-        		giocatori.add(new Giocatore(nome,numeroGiocatori,tavolo[numeroGiocatori],segnalino[numeroGiocatori]));
+        		CartaObiettivo obbPersonale=mIniz.pescaCarta();
+        		giocatori.add(new Giocatore(nome,numeroGiocatori,tavolo[numeroGiocatori],segnalino[numeroGiocatori], obbPersonale));
         		if(numeroGiocatori==1) {
         			giocatori.get(0).impostaColoreSegnalino("Nero");
         		}
