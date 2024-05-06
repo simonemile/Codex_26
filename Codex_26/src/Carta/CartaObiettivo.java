@@ -1,18 +1,23 @@
 package Carta;
 
+import java.util.ArrayList;
 import java.util.List;
+import Codex_26
+import prova.Carta;
+import prova.Icona;
 
 class CartaObiettivo extends Carta {
 	
 	private int punteggio;
-	private Icona regno;
-    private boolean personale=false;
     private boolean girata;
-    private Icona[] risorsaNecessaria;
+    private Icona[] risorsaNecessaria=new Icona[5];
+    private Icona[][] risorsaNecessaria2=new Icona[3][3];
+    private int tipo;
     
-    //costruttore per carte obiettivo con risorse minime necessarie sul tavolo
+    //costruttore per carte obiettivo con risorse minime necessarie sul tavolo per ottenimento punti
     public CartaObiettivo(int punteggio, Icona r1, Icona r2, Icona r3, Icona r4) {
-    	this.girata=false;
+    	this.tipo=1;
+    	this.girata=true;
     	this.punteggio=punteggio;
     	this.risorsaNecessaria[0]=r1;
     	this.risorsaNecessaria[1]=r2;
@@ -20,14 +25,83 @@ class CartaObiettivo extends Carta {
     	this.risorsaNecessaria[3]=r4;
     }
     
-    //
-    public CartaObiettivo() {
-    	
+    //costruttore per carte obiettivo che richiedono un determinato schema di carte per ottenimento punti
+    public CartaObiettivo(int punteggio, Icona reg11, Icona reg12, Icona reg13,Icona reg21, Icona reg22, Icona reg23,Icona reg31, Icona reg32, Icona reg33) {
+    	this.tipo=2;
+    	this.girata=true;
+    	this.punteggio=punteggio;
+    	this.risorsaNecessaria2[0][0]=reg11;
+    	this.risorsaNecessaria2[0][1]=reg12;
+    	this.risorsaNecessaria2[0][2]=reg13;
+    	this.risorsaNecessaria2[1][0]=reg21;
+    	this.risorsaNecessaria2[1][1]=reg22;
+    	this.risorsaNecessaria2[1][2]=reg23;
+    	this.risorsaNecessaria2[2][0]=reg31;
+    	this.risorsaNecessaria2[2][1]=reg32;
+    	this.risorsaNecessaria2[2][2]=reg33;
     }
     
-    public void rendiPersonale(CartaObiettivo cartaObiettivoPersonale) {
-    	super.girare(cartaObiettivoPersonale);
-    	
+    public int assegnaPunteggio1(Tavolo tavolo, Icona[] risorsaNecessaria, CartaObiettivo c) {
+        int num = 0;
+        int puntiCarta = c.getPunteggio();
+        ArrayList<Icona> regniDisponibili = tavolo.getRegniDisponibili();
+        for (int i = 0; i <= regniDisponibili.size() - risorsaNecessaria.length; i++) {
+            boolean trovato = true;
+            ArrayList<Icona> regniUsati = new ArrayList<>(regniDisponibili); 
+            for (Icona icona : risorsaNecessaria) {
+                if (!regniUsati.remove(icona)) { 
+                    trovato = false;
+                    break;
+                }
+            }
+            if (trovato) {
+                num++;
+            }
+        }
+        return num * puntiCarta;
     }
-
+    
+    public int assegnaPunteggio2(Tavolo tavolo, Icona[][] risorsaNecessaria2, CartaObietttivo c) {
+    	int num=0;
+    	int puntiCarta=c.getPunteggio();
+    	Carta[][] carteTavolo=tavolo.getTabellone();
+    	Icona[][] regniTavolo=new Icona[carteTavolo.length][carteTavolo[0].length];
+    	int tavoloRighe=carteTavolo.length;
+    	int tavoloColonne=carteTavolo[0].length;
+    	int patternRighe=risorsaNecessaria2.length;
+    	int patternColonne=risorsaNecessaria2[0].length;
+    	for(int i=0;i<tavoloRighe; i++) {
+    		for(int j=0; j<carteTavolo[i].length; j++) {
+				regniTavolo[i][j]=carteTavolo[i][j].getRegno();
+    		}
+    	}
+    	for(int i=0; i<=tavoloRighe-patternRighe; i++) {
+    		for (int j = 0; j<= tavoloColonne -patternColonne; j++) {
+    	            boolean ripete = true;
+    	            for (int k = 0; k<patternRighe; k++) {
+    	                for (int l = 0; l<patternColonne; l++) {
+    	                    if (risorsaNecessaria2[k][l]!=null && !risorsaNecessaria2[k][l].equals(regniTavolo[i+k][j+l])) {
+    	                        ripete = false;
+    	                        break;
+    	                    } 
+    	                }if (!ripete) {
+    	                	break;
+    	                }
+    	            } if (ripete) {
+    	            	num++;
+    	            }
+    		}
+    	}
+    	return num*puntiCarta;
+    }
+    
+    
+    public int getPunteggio() {
+		return punteggio
+	}
+    @Override
+	public Icona getRegno() {
+		return Icona.VUOTO;
+	}
+    
 }

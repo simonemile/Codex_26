@@ -1,5 +1,7 @@
 package Carta;
 
+import prova.Icona;
+
 public class Risorsa extends Carta {
 	
 	private final Angolo[] angoliFronte=new Angolo[4];
@@ -8,7 +10,7 @@ public class Risorsa extends Carta {
 	
 	//costruttore carte Risorsa, ricevono il regno di appartenenza e simboli di ciascun angolo della carta per fronte/retro
 	//la carta avrà icone diversi agli angoli a seconda se questa sia girata o meno
-	public Risorsa(String regno, Icona a1, Icona a2, Icona a3, Icona a4, Icona aC, Icona aR1,Icona aR2,Icona aR3,Icona aR4) {
+	public Risorsa(Icona regno, Icona a1, Icona a2, Icona a3, Icona a4, Icona aC, Icona aR1,Icona aR2,Icona aR3,Icona aR4) {
 		this.regno=regno;
 		if(isGirata()) {
 			this.angoliRetro[0]=new Angolo(aR1);
@@ -25,11 +27,9 @@ public class Risorsa extends Carta {
 		
 	}
 	
+	@Override
 	public Icona getRegno() {
 		return regno;
-	}
-	public void setRegno(Icona regno) {
-		this.regno = regno;
 	}
 	
 }

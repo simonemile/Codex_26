@@ -6,9 +6,11 @@ public abstract class Carta {
 	
     private boolean girata;
     
+    public abstract Icona getRegno();
+    
     //metodo per girare le carte
-    public void girare(Carta carta) {
-    	girata=!girata;
+    public void girare() {
+    	setGirata(girata=!girata);
     }
     
     public boolean isGirata() {
