@@ -3,26 +3,23 @@ package Carta;
 import java.util.ArrayList;
 import java.util.List;
 import Codex_26
-import prova.Carta;
-import prova.Icona;
 
 class CartaObiettivo extends Carta {
 	
 	private int punteggio;
     private boolean girata;
-    private Icona[] risorsaNecessaria=new Icona[5];
+    private Icona[] risorsaNecessaria=new Icona[4];
     private Icona[][] risorsaNecessaria2=new Icona[3][3];
     private int tipo;
     
     //costruttore per carte obiettivo con risorse minime necessarie sul tavolo per ottenimento punti
-    public CartaObiettivo(int punteggio, Icona r1, Icona r2, Icona r3, Icona r4) {
+    public CartaObiettivo(int punteggio, Icona r1, Icona r2, Icona r3) {
     	this.tipo=1;
     	this.girata=true;
     	this.punteggio=punteggio;
     	this.risorsaNecessaria[0]=r1;
     	this.risorsaNecessaria[1]=r2;
     	this.risorsaNecessaria[2]=r3;
-    	this.risorsaNecessaria[3]=r4;
     }
     
     //costruttore per carte obiettivo che richiedono un determinato schema di carte per ottenimento punti
@@ -58,7 +55,8 @@ class CartaObiettivo extends Carta {
                 num++;
             }
         }
-        return num * puntiCarta;
+        int punteggio=num * puntiCarta;
+        return punteggio;
     }
     
     public int assegnaPunteggio2(Tavolo tavolo, Icona[][] risorsaNecessaria2, CartaObietttivo c) {
@@ -80,24 +78,62 @@ class CartaObiettivo extends Carta {
     	            boolean ripete = true;
     	            for (int k = 0; k<patternRighe; k++) {
     	                for (int l = 0; l<patternColonne; l++) {
-    	                    if (risorsaNecessaria2[k][l]!=null && !risorsaNecessaria2[k][l].equals(regniTavolo[i+k][j+l])) {
+    	                    if (risorsaNecessaria2[k][l]!=Icona.ASSENTE && !risorsaNecessaria2[k][l].equals(regniTavolo[i+k][j+l])) {
     	                        ripete = false;
     	                        break;
     	                    } 
     	                }if (!ripete) {
     	                	break;
     	                }
-    	            } if (ripete) {
+    	            }if (ripete){
     	            	num++;
     	            }
-    		}
+    	            /*else if(j+patternColonne==tavoloColonne-1){
+    	                boolean cercaOltre=true;
+    	                for (int k=0; k<patternRighe; k++) {
+    	                    if (risorsaNecessaria2[k][patternColonne - 1]!= Icona.ASSENTE){
+    	                        cercaOltre = false;
+    	                        break;
+    	                    }
+    	                }if(cercaOltre) {
+    	                	int x=i;
+    	                    while (x<=i+patternRighe-1 && x<risorsaNecessaria2.length){
+    	                        int y=j+patternColonne;
+    	                        while(y<tavoloColonne) {
+    	                            boolean ripete2= true;
+    	                            for (int k = 0; k < patternRighe; k++) {
+    	                                for (int l = 0; l < patternColonne; l++) {
+    	                                    int x2=k+x;
+    	                                    int y2 =l+y;
+    	                                    if(risorsaNecessaria2[x2][y2]!= Icona.VUOTO && !risorsaNecessaria2[x2][y2].equals(regniTavolo[(i + k) % tavoloRighe][j + l])) {
+    	                                        ripete2 = false;
+    	                                        break;
+    	                                    }
+    	                                }
+    	                                if(!ripete2) {
+    	                                   break;
+    	                                }
+    	                            }
+    	                            if(ripete2) {
+    	                               num++;
+    	                            }
+    	                            y++;
+    	                        }
+    	                        x++;
+    	                    }
+    	                }
+    	     */       }
+    			}	
     	}
-    	return num*puntiCarta;
+    	int punteggio=num * puntiCarta;
+        return punteggio;
     }
-    
+
+	public int assegnaPunti3(Tavolo tavolo, Icona[][] risorsaNecessaria2, CartaObietttivo c) {
+	}
     
     public int getPunteggio() {
-		return punteggio
+		return  punteggio;
 	}
     @Override
 	public Icona getRegno() {
