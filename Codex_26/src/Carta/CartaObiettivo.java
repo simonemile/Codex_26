@@ -3,6 +3,7 @@ package Carta;
 import java.util.ArrayList;
 import java.util.List;
 import Codex_26
+import prova.Icona;
 
 class CartaObiettivo extends Carta {
 	
@@ -10,6 +11,7 @@ class CartaObiettivo extends Carta {
     private boolean girata;
     private Icona[] risorsaNecessaria=new Icona[4];
     private Icona[][] risorsaNecessaria2=new Icona[3][3];
+    private Icona[][] risorsaNecessaria3=new Icona[3][2];
     private int tipo;
     
     //costruttore per carte obiettivo con risorse minime necessarie sul tavolo per ottenimento punti
@@ -38,9 +40,24 @@ class CartaObiettivo extends Carta {
     	this.risorsaNecessaria2[2][2]=reg33;
     }
     
-    public int assegnaPunteggio1(Tavolo tavolo, Icona[] risorsaNecessaria, CartaObiettivo c) {
+    public CartaObiettivo(Icona reg11, Icona reg12, Icona reg21, Icona reg22, Icona reg31, Icona reg32) {
+    	this.tipo=2;
+    	this.girata=true;
+    	this.punteggio=punteggio;
+    	this.risorsaNecessaria3[0][0]=reg11;
+    	this.risorsaNecessaria3[0][1]=reg12;
+    	this.risorsaNecessaria3[1][0]=reg21;
+    	this.risorsaNecessaria3[1][1]=reg22;
+    	this.risorsaNecessaria3[2][0]=reg31;
+    	this.risorsaNecessaria3[2][1]=reg32;
+    }
+    	
+    
+    public int assegnaPunteggio1(Tavolo tavolo, CartaObiettivo c) {
         int num = 0;
         int puntiCarta = c.getPunteggio();
+        Icona[] risorsaNecessaria=new Icona[];
+    	risorsaNecessaria=c.getRisorsaNecessaria();
         ArrayList<Icona> regniDisponibili = tavolo.getRegniDisponibili();
         for (int i = 0; i <= regniDisponibili.size() - risorsaNecessaria.length; i++) {
             boolean trovato = true;
@@ -59,9 +76,11 @@ class CartaObiettivo extends Carta {
         return punteggio;
     }
     
-    public int assegnaPunteggio2(Tavolo tavolo, Icona[][] risorsaNecessaria2, CartaObietttivo c) {
+    public int assegnaPunteggio2(Tavolo tavolo, CartaObietttivo c) {
     	int num=0;
     	int puntiCarta=c.getPunteggio();
+    	Icona[][] risorsaNecessaria2=new Icona[][];
+    	risorsaNecessaria2=c.getRisorsaNecessaria2();
     	Carta[][] carteTavolo=tavolo.getTabellone();
     	Icona[][] regniTavolo=new Icona[carteTavolo.length][carteTavolo[0].length];
     	int tavoloRighe=carteTavolo.length;
@@ -88,56 +107,26 @@ class CartaObiettivo extends Carta {
     	            }if (ripete){
     	            	num++;
     	            }
-    	            /*else if(j+patternColonne==tavoloColonne-1){
-    	                boolean cercaOltre=true;
-    	                for (int k=0; k<patternRighe; k++) {
-    	                    if (risorsaNecessaria2[k][patternColonne - 1]!= Icona.ASSENTE){
-    	                        cercaOltre = false;
-    	                        break;
-    	                    }
-    	                }if(cercaOltre) {
-    	                	int x=i;
-    	                    while (x<=i+patternRighe-1 && x<risorsaNecessaria2.length){
-    	                        int y=j+patternColonne;
-    	                        while(y<tavoloColonne) {
-    	                            boolean ripete2= true;
-    	                            for (int k = 0; k < patternRighe; k++) {
-    	                                for (int l = 0; l < patternColonne; l++) {
-    	                                    int x2=k+x;
-    	                                    int y2 =l+y;
-    	                                    if(risorsaNecessaria2[x2][y2]!= Icona.VUOTO && !risorsaNecessaria2[x2][y2].equals(regniTavolo[(i + k) % tavoloRighe][j + l])) {
-    	                                        ripete2 = false;
-    	                                        break;
-    	                                    }
-    	                                }
-    	                                if(!ripete2) {
-    	                                   break;
-    	                                }
-    	                            }
-    	                            if(ripete2) {
-    	                               num++;
-    	                            }
-    	                            y++;
-    	                        }
-    	                        x++;
-    	                    }
-    	                }
-    	     */       }
-    			}	
+    	      }	
     	}
     	int punteggio=num * puntiCarta;
         return punteggio;
     }
-
-	public int assegnaPunti3(Tavolo tavolo, Icona[][] risorsaNecessaria2, CartaObietttivo c) {
-	}
+    
     
     public int getPunteggio() {
 		return  punteggio;
 	}
+    public Icona[][] getRisorsaNecessaria() {
+		return risorsaNecessaria;
+	}
+    public Icona[][] getRisorsaNecessaria2() {
+		return risorsaNecessaria2;
+	}
+    
     @Override
 	public Icona getRegno() {
-		return Icona.VUOTO;
+		return Icona.ASSENTE;
 	}
     
 }
