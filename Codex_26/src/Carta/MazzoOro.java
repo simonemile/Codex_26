@@ -74,7 +74,7 @@ public class MazzoOro extends Mazzo{
 	
 	@Override
 	public CartaPunteggioOro pescaCarta() {
-		Iniziale nuovaCarta= mazzo.get(0);
+		CartaPunteggioOro nuovaCarta= mazzo.get(0);
 	    mazzo.remove(0);
 	    nuovaCarta.girare();
 	    return nuovaCarta;

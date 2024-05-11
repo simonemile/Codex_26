@@ -18,7 +18,7 @@ public class MazzoIniziali extends Mazzo{
 		mazzo.add(c2=new Iniziale(Icona.ANIMALE,Icona.VUOTO,Icona.VUOTO,Icona.FUNGHI,Icona.ASSENTE,Icona.FUNGHI,Icona.ASSENTE,Icona.VEGETALE,Icona.ANIMALE,Icona.FUNGHI,Icona.INSETTI));
 		mazzo.add(c3=new Iniziale(Icona.VUOTO,Icona.VUOTO,Icona.VUOTO,Icona.VUOTO,Icona.VEGETALE,Icona.FUNGHI,Icona.ASSENTE,Icona.INSETTI,Icona.ANIMALE,Icona.FUNGHI,Icona.VEGETALE));
 		mazzo.add(c4=new Iniziale(Icona.VUOTO,Icona.VUOTO,Icona.VUOTO,Icona.VUOTO,Icona.ANIMALE,Icona.INSETTI,Icona.ASSENTE,Icona.VEGETALE,Icona.INSETTI,Icona.ANIMALE,Icona.FUNGHI));
-		mazzo.add(c5=new Iniziale(Icona.VUOTO,Icona.VUOTO,Icona.ASSENTE,Icona.ASSENTE,Icona.ANIMALe,Icona.INSETTI,Icona.VEGETALE,Icona.INSETTI,Icona.FUNGHI,Icona.VEGETALE,Icona.ANIMALE));
+		mazzo.add(c5=new Iniziale(Icona.VUOTO,Icona.VUOTO,Icona.ASSENTE,Icona.ASSENTE,Icona.ANIMALE,Icona.INSETTI,Icona.VEGETALE,Icona.INSETTI,Icona.FUNGHI,Icona.VEGETALE,Icona.ANIMALE));
 		mazzo.add(c6=new Iniziale(Icona.VUOTO,Icona.VUOTO,Icona.ASSENTE,Icona.ASSENTE,Icona.VEGETALE,Icona.ANIMALE,Icona.FUNGHI,Icona.FUNGHI,Icona.ANIMALE,Icona.VEGETALE,Icona.INSETTI));
 		
 		Collections.shuffle(mazzo);

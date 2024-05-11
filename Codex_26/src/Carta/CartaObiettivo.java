@@ -13,7 +13,7 @@ class CartaObiettivo extends Carta {
     private boolean girata;
     private Icona[] risorsaNecessaria=new Icona[4];
     private Icona[][] risorsaNecessaria2=new Icona[3][3];
-    private Icona[][] risorsaNecessaria3=new Icona[3][2];
+    private Icona[][] risorsaNecessaria3=new Icona[4][2];
     private int type;
     
     //costruttore per carte obiettivo con risorse minime necessarie sul tavolo per ottenimento punti
@@ -43,7 +43,7 @@ class CartaObiettivo extends Carta {
     	this.risorsaNecessaria2[2][2]=reg33;
     }
     
-    public CartaObiettivo(Icona reg11,int type, Icona reg12, Icona reg21, Icona reg22, Icona reg31, Icona reg32) {
+    public CartaObiettivo(Icona reg11,int type, Icona reg12, Icona reg21, Icona reg22, Icona reg31, Icona reg32, Icona reg41, Icona reg42) {
     	this.girata=true;
     	this.type=2;
     	this.punteggio=punteggio;
@@ -53,6 +53,8 @@ class CartaObiettivo extends Carta {
     	this.risorsaNecessaria3[1][1]=reg22;
     	this.risorsaNecessaria3[2][0]=reg31;
     	this.risorsaNecessaria3[2][1]=reg32;
+    	this.risorsaNecessaria3[3][1]=reg41;
+    	this.risorsaNecessaria3[3][2]=reg42;
     }
     	
     
@@ -95,21 +97,21 @@ class CartaObiettivo extends Carta {
     		}
     	}
     	for(int i=0; i<=tavoloRighe-patternRighe; i++) {
-    		for (int j = 0; j<= tavoloColonne -patternColonne; j++) {
-    	            boolean ripete = true;
+    		for (int j=0; j<= tavoloColonne -patternColonne; j++) {
+    			boolean ripete = true;
     	            for (int k = 0; k<patternRighe; k++) {
     	                for (int l = 0; l<patternColonne; l++) {
     	                    if (risorsaNecessaria2[k][l]!=Icona.ASSENTE && !risorsaNecessaria2[k][l].equals(regniTavolo[i+k][j+l])) {
     	                        ripete = false;
     	                        break;
     	                    } 
-    	                }if (!ripete) {
+    	                }if(!ripete) {
     	                	break;
     	                }
-    	            }if (ripete){
+    	            }if(ripete){
     	            	num++;
     	            }
-    	      }	
+    		}	
     	}
     	int punteggio=num * puntiCarta;
         return punteggio;
@@ -126,7 +128,7 @@ class CartaObiettivo extends Carta {
     	int type=c.getType();
     	if(type==1) {
     		return risorsaNecessaria2;
-    	}else {
+    	}else{
     		return risorsaNecessaria3;
     	}
 	}

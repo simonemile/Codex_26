@@ -30,14 +30,6 @@ public class Risorsa extends Carta {
 		}
 	}
 	
-	public Angolo[] getAngolo() {
-		if(isGirata()) {
-			return angoliRetro;
-		}else {
-			return angoliFronte;
-		}
-	}
-	
 	@Override
 	public Angolo[] getAngolo() {
 		if(isGirata()) {

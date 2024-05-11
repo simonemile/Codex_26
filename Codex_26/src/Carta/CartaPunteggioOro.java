@@ -1,7 +1,6 @@
 package Carta;
 
 import Codex_26.Tavolo;
-import prova.Carta;
 import Codex_26.Tavolo;
 
 import java.util.ArrayList;

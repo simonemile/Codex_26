@@ -10,7 +10,7 @@ public class MazzoObiettivo extends Mazzo{
 	/*VEGETALE, ANIMALE, FUNGHI, INSETTI, PIUMA, INCHIOSTRO, PERGAMENA, VUOTO, ASSENTE;
 	**int punteggio,type, Icona r1, Icona r2, Icona r3
 	**int punteggio,type, Icona reg11, Icona reg12, Icona reg13,Icona reg21, Icona reg22, Icona reg23,Icona reg31, Icona reg32, Icona reg33
-	**p, type,Icona reg11, Icona reg12, Icona reg21, Icona reg22, Icona reg31, Icona reg32
+	**p, type,Icona reg11, Icona reg12, Icona reg21, Icona reg22, Icona reg31, Icona reg32,Icona reg 41,Icona reg 42
 	**/
 	@Override
 	public void aggiungiCarta() {
@@ -31,10 +31,10 @@ public class MazzoObiettivo extends Mazzo{
 		mazzo.add(c11=new CartaObiettivo(2,1,Icona.ASSENTE,Icona.ASSENTE,Icona.ANIMALE,Icona.ASSENTE,Icona.ANIMALE,Icona.ASSENTE,Icona.ANIMALE,Icona.ASSENTE,Icona.ASSENTE));
 		mazzo.add(c12=new CartaObiettivo(2,1,Icona.ASSENTE,Icona.ASSENTE,Icona.INSETTI,Icona.ASSENTE,Icona.INSETTI,Icona.ASSENTE,Icona.INSETTI,Icona.ASSENTE,Icona.ASSENTE));
 		
-		mazzo.add(c13=new CartaObiettivo(3,2,Icona.FUNGHI,Icona.ASSENTE,Icona.FUNGHI,Icona.ASSENTE,Icona.ASSENTE,Icona.VEGETALE));
-		mazzo.add(c14=new CartaObiettivo(3,2,Icona.ASSENTE,Icona.VEGETALE,Icona.ASSENTE,Icona.VEGETALE,Icona.INSETTI,Icona.ASSENTE));
-		mazzo.add(c15=new CartaObiettivo(3,2,Icona.ASSENTE,Icona.FUNGHI,Icona.ANIMALE,Icona.ASSENTE,Icona.ANIMALE,Icona.ASSENTE));
-		mazzo.add(c16=new CartaObiettivo(3,2,Icona.ANIMALE,Icona.ASSENTE,Icona.ASSENTE,Icona.INSETTI,Icona.ASSENTE,Icona.INSETTI));
+		mazzo.add(c13=new CartaObiettivo(3,2,Icona.FUNGHI,Icona.ASSENTE,Icona.ASSENTE,Icona.ASSENTE,Icona.FUNGHI,Icona.ASSENTE,Icona.ASSENTE,Icona.VEGETALE));
+		mazzo.add(c14=new CartaObiettivo(3,2,Icona.ASSENTE,Icona.VEGETALE,Icona.ASSENTE,Icona.ASSENTE,Icona.ASSENTE,Icona.VEGETALE,Icona.INSETTI,Icona.ASSENTE));
+		mazzo.add(c15=new CartaObiettivo(3,2,Icona.ASSENTE,Icona.FUNGHI,Icona.ASSENTE,Icona.ASSENTE,Icona.ANIMALE,Icona.ASSENTE,Icona.ANIMALE,Icona.ASSENTE));
+		mazzo.add(c16=new CartaObiettivo(3,2,Icona.ANIMALE,Icona.ASSENTE,Icona.ASSENTE,Icona.ASSENTE,Icona.ASSENTE,Icona.INSETTI,Icona.ASSENTE,Icona.INSETTI));
 		
 		Collections.shuffle(mazzo);
 	}
