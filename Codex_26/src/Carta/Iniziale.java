@@ -9,7 +9,7 @@ public class Iniziale extends Carta {
 	//costruttore delle carte iniziali in cui vengono chiamati i simboli presenti sul fronte e sul retro della carta
 	//la carta avrà icone diversi agli angoli a seconda se questa sia girata o meno
 	public Iniziale(Icona a1, Icona a2, Icona a3, Icona a4, Icona aC1, Icona aC2,Icona aC3, Icona aR1,Icona aR2,Icona aR3,Icona aR4) {
-		if(super.isGirata()) {
+		if(isGirata()) {
 			this.angoliRetro[0]=new Angolo(aR1);
 			this.angoliRetro[1]=new Angolo(aR2);
 			this.angoliRetro[2]=new Angolo(aR3);
@@ -25,6 +25,22 @@ public class Iniziale extends Carta {
 		}
 	}
 	
+	public Angolo[] getAngolo() {
+		if(isGirata()) {
+			return angoliRetro;
+		}else {
+			return angoliFronte;
+		}
+	}
+	
+	@Override
+	public Angolo[] getAngolo() {
+		if(isGirata()) {
+			return angoliRetro;
+		}else {
+			return angoliFronte;
+		}
+	}
 	@Override
 	public Icona getRegno() {
 		return Icona.VUOTO;

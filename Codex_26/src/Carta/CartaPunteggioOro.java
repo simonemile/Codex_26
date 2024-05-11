@@ -1,7 +1,8 @@
 package Carta;
 
 import Codex_26.Tavolo;
-import prova.Icona;
+import prova.Carta;
+import Codex_26.Tavolo;
 
 import java.util.ArrayList;
 
@@ -11,17 +12,23 @@ class CartaPunteggioOro extends Carta {
 	private final Icona[] risorseMinime=new Icona[5];
 	private final Icona regno;
 	private int punteggio;
+	private int type;
+	private Icona dipIcona;
 	
 	//costruttore cartaPunteggioOro, riceve come parametri punti assegnati, le risorse per poterla usare e le proprietà degli angoli retro/fronte
 	//la carta avrà icone diversi agli angoli a seconda se questa sia girata o meno
-	public CartaPunteggioOro(int punteggio,Icona regno, Icona r1,Icona r2, Icona r3, Icona r4, Icona r5,Icona aCR,Icona a1R,Icona a2R,Icona a3R,Icona a4R, Icona a1, Icona a2, Icona a3, Icona a4) {
+	//il type indica se il punteggio dipende dagli angoli coperti della carta 2,dalle risorse sul campo 1, o sono fissi 0
+	//dipIcona indica l'icona da cui dipendono i punteggi di alcune carte
+	public CartaPunteggioOro(int punteggio, int type, Icona dipIcona, Icona regno, Icona r1,Icona r2, Icona r3, Icona r4, Icona r5,Icona a1, Icona a2, Icona a3, Icona a4) {
 		this.regno=regno;
+		this.type=type;
 		if(isGirata()) {	
-			this.angoliRetro[0]=new Angolo(a1R);
-			this.angoliRetro[1]=new Angolo(a2R);
-			this.angoliRetro[2]=new Angolo(a3R);
-			this.angoliRetro[3]=new Angolo(a4R);
-			this.angoliRetro[4]=new Angolo(aCR);
+			this.punteggio=0;
+			this.angoliRetro[0]=new Angolo(Icona.VUOTO);
+			this.angoliRetro[1]=new Angolo(Icona.VUOTO);
+			this.angoliRetro[2]=new Angolo(Icona.VUOTO);
+			this.angoliRetro[3]=new Angolo(Icona.VUOTO);
+			this.angoliRetro[4]=new Angolo(regno);
 		}else {
 			this.punteggio=punteggio;
 			this.risorseMinime[0]=r1;
@@ -40,15 +47,55 @@ class CartaPunteggioOro extends Carta {
 	//metodo per verificare che le condizioni per poter piazzare la carta siano incontrate
 	public boolean verificaRisorse(Icona[] risorseMinime,Tavolo tavolo) {
 		ArrayList<Icona> risorseDisponibili=tavolo.getRisorseDisponibili();
-		for(int i=0; i<5; i++) {
-			if(!risorseDisponibili.contains(risorseMinime[i])) {
+		for(int i=0; i<6; i++) {
+			if(!risorseDisponibili.contains(risorseMinime[i]) && (risorseMinime[i]!=Icona.ASSENTE || risorseMinime[i]!=Icona.VUOTO)) {
 				return false;
 			}
 		}
 		return true;
 	}
 	
+	//permette di contare quanti angoli una carta copre per i punteggi assegnati dipendente dal numero di angoli coperti
+	public int contaAngoliCoperti(Tavolo tavolo, int riga, int colonna) {
+		int coperti=0;
+		Carta[][] carteTavolo=tavolo.getTabellone();
+		//controllo alto sx
+		 if(riga>0 && colonna>0) {
+	            if(carteTavolo[riga-1][colonna-1]!= null) {
+	                if(carteTavolo[riga-1][colonna-1].getAngolo()[2].getNascosto()){
+	                	coperti++;
+	                }
+	            }
+	        }
+		 //controllo alto dx
+	        if(riga>0 && colonna<carteTavolo[0].length-1){
+	            if(carteTavolo[riga-1][colonna+1]!= null){
+	                if(carteTavolo[riga-1][colonna+1].getAngolo()[3].getNascosto()){
+	                    coperti++;
+	                }
+	            }
+	        }
+	        // controllo basso sx
+	        if(riga<carteTavolo.length-1 && colonna>0){
+	            if (carteTavolo[riga+1][colonna-1]!= null){
+	                if (carteTavolo[riga+1][colonna-1].getAngolo()[1].getNascosto()) {
+	                    coperti++;
+	                }
+	            }
+	        }
+	        //controllo basso dx
+	        if (riga<carteTavolo.length-1 && colonna<carteTavolo[0].length-1){
+	            if (carteTavolo[riga+1][colonna+1]!= null){
+	                if (carteTavolo[riga+1][colonna+1].getAngolo()[0].getNascosto()){
+	                    coperti++;
+	                }
+	            }
+	        }
+		
+		return coperti;
+	}
 	
+
 	public int getPunteggio() {
 		return punteggio;
 	}
@@ -60,6 +107,18 @@ class CartaPunteggioOro extends Carta {
 	}
 	public Icona[] getRisorseMinime() {
 		return risorseMinime;
+	}
+	public Icona getDipIcona() {
+		return dipIcona;
+	}
+	
+	@Override
+	public Angolo[] getAngolo() {
+		if(isGirata()) {
+			return angoliRetro;
+		}else {
+			return angoliFronte;
+		}
 	}
 	@Override
 	public Icona getRegno() {
