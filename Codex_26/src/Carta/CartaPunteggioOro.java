@@ -15,10 +15,11 @@ class CartaPunteggioOro extends Carta {
 	private int type;
 	private Icona dipIcona;
 	
-	//costruttore cartaPunteggioOro, riceve come parametri punti assegnati, le risorse per poterla usare e le proprietà degli angoli retro/fronte
-	//la carta avrà icone diversi agli angoli a seconda se questa sia girata o meno
-	//il type indica se il punteggio dipende dagli angoli coperti della carta 2,dalle risorse sul campo 1, o sono fissi 0
-	//dipIcona indica l'icona da cui dipendono i punteggi di alcune carte
+	/*costruttore cartaPunteggioOro, riceve come parametri punti assegnati, le risorse per poterla usare e le proprietà degli angoli retro/fronte
+	**la carta avrà icone diversi agli angoli a seconda se questa sia girata o meno
+	**il type indica se il punteggio dipende dagli angoli coperti della carta 2,dalle risorse sul campo 1, o sono fissi 0
+	**dipIcona indica l'icona da cui dipendono i punteggi di alcune carte
+	*/
 	public CartaPunteggioOro(int punteggio, int type, Icona dipIcona, Icona regno, Icona r1,Icona r2, Icona r3, Icona r4, Icona r5,Icona a1, Icona a2, Icona a3, Icona a4) {
 		this.regno=regno;
 		this.type=type;

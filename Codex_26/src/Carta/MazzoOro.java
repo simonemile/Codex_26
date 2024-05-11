@@ -55,18 +55,18 @@ public class MazzoOro extends Mazzo{
 		mazzo.add(c29=new CartaPunteggioOro(3,0,Icona.ASSENTE, Icona.ANIMALE,Icona.ANIMALE,Icona.ANIMALE,Icona.ANIMALE,Icona.ASSENTE,Icona.ASSENTE,Icona.ASSENTE,Icona.VUOTO,Icona.ASSENTE,Icona.PIUMA));
 		mazzo.add(c30=new CartaPunteggioOro(5,0,Icona.ASSENTE, Icona.ANIMALE,Icona.ANIMALE,Icona.ANIMALE,Icona.ANIMALE,Icona.ANIMALE,Icona.ANIMALE,Icona.ASSENTE,Icona.VUOTO,Icona.ASSENTE,Icona.VUOTO));
 
-		mazzo.add(c11=new CartaPunteggioOro(1,1,Icona.PIUMA, Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.VEGETALE,Icona.ASSENTE,Icona.ASSENTE,Icona.VUOTO,Icona.PIUMA,Icona.ASSENTE,Icona.VUOTO));
-		mazzo.add(c12=new CartaPunteggioOro(1,1,Icona.PERGAMENA, Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.ANIMALE,Icona.ASSENTE,Icona.ASSENTE,Icona.VUOTO,Icona.ASSENTE,Icona.PERGAMENA,Icona.VUOTO));
-		mazzo.add(c13=new CartaPunteggioOro(1,1,Icona.INCHIOSTRO, Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.FUNGHI,Icona.ASSENTE,Icona.ASSENTE,Icona.ASSENTE,Icona.VUOTO,Icona.VUOTO,Icona.INCHIOSTRO));
+		mazzo.add(c31=new CartaPunteggioOro(1,1,Icona.PIUMA, Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.VEGETALE,Icona.ASSENTE,Icona.ASSENTE,Icona.VUOTO,Icona.PIUMA,Icona.ASSENTE,Icona.VUOTO));
+		mazzo.add(c32=new CartaPunteggioOro(1,1,Icona.PERGAMENA, Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.ANIMALE,Icona.ASSENTE,Icona.ASSENTE,Icona.VUOTO,Icona.ASSENTE,Icona.PERGAMENA,Icona.VUOTO));
+		mazzo.add(c33=new CartaPunteggioOro(1,1,Icona.INCHIOSTRO, Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.FUNGHI,Icona.ASSENTE,Icona.ASSENTE,Icona.ASSENTE,Icona.VUOTO,Icona.VUOTO,Icona.INCHIOSTRO));
 		
-		mazzo.add(c14=new CartaPunteggioOro(2,2,Icona.ASSENTE, Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.ANIMALE,Icona.ASSENTE,Icona.VUOTO,Icona.VUOTO,Icona.ASSENTE,Icona.VUOTO));
-		mazzo.add(c15=new CartaPunteggioOro(2,2,Icona.ASSENTE, Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.VEGETALE,Icona.ASSENTE,Icona.VUOTO,Icona.VUOTO,Icona.VUOTO,Icona.ASSENTE));
-		mazzo.add(c16=new CartaPunteggioOro(2,2,Icona.ASSENTE, Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.FUNGHI,Icona.ASSENTE,Icona.VUOTO,Icona.ASSENTE,Icona.VUOTO,Icona.VUOTO));
+		mazzo.add(c34=new CartaPunteggioOro(2,2,Icona.ASSENTE, Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.ANIMALE,Icona.ASSENTE,Icona.VUOTO,Icona.VUOTO,Icona.ASSENTE,Icona.VUOTO));
+		mazzo.add(c35=new CartaPunteggioOro(2,2,Icona.ASSENTE, Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.VEGETALE,Icona.ASSENTE,Icona.VUOTO,Icona.VUOTO,Icona.VUOTO,Icona.ASSENTE));
+		mazzo.add(c36=new CartaPunteggioOro(2,2,Icona.ASSENTE, Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.FUNGHI,Icona.ASSENTE,Icona.VUOTO,Icona.ASSENTE,Icona.VUOTO,Icona.VUOTO));
 		
-		mazzo.add(c17=new CartaPunteggioOro(3,0,Icona.ASSENTE, Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.ASSENTE,Icona.ASSENTE,Icona.INCHIOSTRO,Icona.ASSENTE,Icona.VUOTO,Icona.ASSENTE));
-		mazzo.add(c18=new CartaPunteggioOro(3,0,Icona.ASSENTE, Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.ASSENTE,Icona.ASSENTE,Icona.VUOTO,Icona.PERGAMENA,Icona.ASSENTE,Icona.ASSENTE));
-		mazzo.add(c19=new CartaPunteggioOro(3,0,Icona.ASSENTE, Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.ASSENTE,Icona.ASSENTE,Icona.ASSENTE,Icona.ASSENTE,Icona.PIUMA,Icona.VUOTO));
-		mazzo.add(c20=new CartaPunteggioOro(5,0,Icona.ASSENTE, Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.VUOTO,Icona.VUOTO,Icona.ASSENTE,Icona.ASSENTE));
+		mazzo.add(c37=new CartaPunteggioOro(3,0,Icona.ASSENTE, Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.ASSENTE,Icona.ASSENTE,Icona.INCHIOSTRO,Icona.ASSENTE,Icona.VUOTO,Icona.ASSENTE));
+		mazzo.add(c38=new CartaPunteggioOro(3,0,Icona.ASSENTE, Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.ASSENTE,Icona.ASSENTE,Icona.VUOTO,Icona.PERGAMENA,Icona.ASSENTE,Icona.ASSENTE));
+		mazzo.add(c39=new CartaPunteggioOro(3,0,Icona.ASSENTE, Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.ASSENTE,Icona.ASSENTE,Icona.ASSENTE,Icona.ASSENTE,Icona.PIUMA,Icona.VUOTO));
+		mazzo.add(c40=new CartaPunteggioOro(5,0,Icona.ASSENTE, Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.INSETTI,Icona.VUOTO,Icona.VUOTO,Icona.ASSENTE,Icona.ASSENTE));
 
 		
 		Collections.shuffle(mazzo);
