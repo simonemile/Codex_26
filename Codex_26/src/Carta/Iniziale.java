@@ -2,8 +2,8 @@ package Carta;
 
 public class Iniziale extends Carta {
 	
-	private final Angolo[] angoliFronte=new Angolo[7];
-	private final Angolo[] angoliRetro=new Angolo[4];
+	private  Angolo[] angoliFronte=new Angolo[7];
+	private Angolo[] angoliRetro=new Angolo[4];
 	private Icona regno;
 	
 	//costruttore delle carte iniziali in cui vengono chiamati i simboli presenti sul fronte e sul retro della carta
@@ -20,9 +20,9 @@ public class Iniziale extends Carta {
 			this.angoliFronte[1]=new Angolo(a2);
 			this.angoliFronte[2]=new Angolo(a3);
 			this.angoliFronte[3]=new Angolo(a4);
-			this.angoliRetro[4]=new Angolo(aC1);
-			this.angoliRetro[5]=new Angolo(aC2);
-			this.angoliRetro[6]=new Angolo(aC3);
+			this.angoliFronte[4]=new Angolo(aC1);
+			this.angoliFronte[5]=new Angolo(aC2);
+			this.angoliFronte[6]=new Angolo(aC3);
 		}
 	}
 	

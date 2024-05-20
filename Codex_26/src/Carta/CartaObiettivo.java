@@ -9,15 +9,17 @@ import prova.Obiettivo;
 
 class CartaObiettivo extends Carta {
 	
-	private int punteggio;
+	private final int punteggio;
     private boolean girata;
     private Icona[] risorsaNecessaria=new Icona[4];
     private Icona[][] risorsaNecessaria2=new Icona[3][3];
     private Icona[][] risorsaNecessaria3=new Icona[4][2];
-    private int type;
+    private final int type;
     
     //costruttore per carte obiettivo con risorse minime necessarie sul tavolo per ottenimento punti
+    //type 0 indica carte obiettivo con richiesta risorse minime
     public CartaObiettivo(int punteggio, Icona r1, Icona r2, Icona r3) {
+    	this.type=0;
     	this.girata=true;
     	this.punteggio=punteggio;
     	this.risorsaNecessaria[0]=r1;
@@ -27,7 +29,7 @@ class CartaObiettivo extends Carta {
     
     //costruttore per carte obiettivo che richiedono un determinato schema di carte per ottenimento punti
     //tipo indica grandezza matrice necessaria
-    //tipo 1 indica costruttore per matrice 3x3, tipo 2 matrice 3x2
+    //tipo 1 indica costruttore per matrice 3x3, tipo 2 matrice 4x2
     public CartaObiettivo(int punteggio,int type, Icona reg11, Icona reg12, Icona reg13,Icona reg21, Icona reg22, Icona reg23,Icona reg31, Icona reg32, Icona reg33) {
     	this.girata=true;
     	this.type=1;
@@ -57,17 +59,18 @@ class CartaObiettivo extends Carta {
     	this.risorsaNecessaria3[3][2]=reg42;
     }
     	
-    
+  //metodo per assegnare il punteggio per le carte obiettivo che richiedono un minimo di risorse sul tavolo
     public int assegnaPunteggio1(Tavolo tavolo, CartaObiettivo c) {
         int num = 0;
         int puntiCarta = c.getPunteggio();
         Icona[] risorsaNecessaria=c.getRisorsaNecessaria();;
-        ArrayList<Icona> regniDisponibili = tavolo.getRegniDisponibili();
-        for (int i = 0; i <= regniDisponibili.size()-risorsaNecessaria.length; i++) {
+        ArrayList<Icona> risorseDisponibili = tavolo.getRisorseDisponibili();
+        for (int i = 0; i <= risorseDisponibili.size()-risorsaNecessaria.length; i++) {
             boolean trovato = true;
-            ArrayList<Icona> regniUsati = new ArrayList<>(regniDisponibili); 
+            ArrayList<Icona> risorseUsate= new ArrayList<>(risorseDisponibili); 
+            //rimuovo icone disponibili ogni qual volta trovo una corrispondenza in modo da evitare duplicazioni del conteggio delle risorse in caso di ripetizione delle risorse necessarie
             for (Icona icona : risorsaNecessaria) {
-                if (!regniUsati.remove(icona)) { 
+                if (!risorseUsate.remove(icona)) { 
                     trovato = false;
                     break;
                 }
@@ -80,6 +83,7 @@ class CartaObiettivo extends Carta {
         return punteggio;
     }
     
+    //metodo per assegnare il punteggio per le carte obiettivo che presentano un pattern
     public int assegnaPunteggio2(Tavolo tavolo, CartaObietttivo c) {
     	int num=0;
     	int puntiCarta=c.getPunteggio();
@@ -91,28 +95,48 @@ class CartaObiettivo extends Carta {
     	int tavoloColonne=carteTavolo[0].length;
     	int patternRighe=risorsaNecessaria2.length;
     	int patternColonne=risorsaNecessaria2[0].length;
+    	//converte la matrice di carte in matrice di regni(tipo icona)
     	for(int i=0;i<tavoloRighe; i++) {
-    		for(int j=0; j<carteTavolo[i].length; j++) {
-				regniTavolo[i][j]=carteTavolo[i][j].getRegno();
-    		}
+    		for (int j = 0; j < tavoloColonne; j++) {
+    			if (carteTavolo[i][j] != null) {
+    				regniTavolo[i][j] = carteTavolo[i][j].getRegno();
+    			}else {
+    				regniTavolo[i][j] = null;
+                }
+            }
     	}
-    	for(int i=0; i<=tavoloRighe-patternRighe; i++) {
-    		for (int j=0; j<= tavoloColonne -patternColonne; j++) {
-    			boolean ripete = true;
-    	            for (int k = 0; k<patternRighe; k++) {
-    	                for (int l = 0; l<patternColonne; l++) {
-    	                    if (risorsaNecessaria2[k][l]!=Icona.ASSENTE && !risorsaNecessaria2[k][l].equals(regniTavolo[i+k][j+l])) {
-    	                        ripete = false;
-    	                        break;
-    	                    } 
-    	                }if(!ripete) {
-    	                	break;
-    	                }
-    	            }if(ripete){
-    	            	num++;
-    	            }
-    		}	
-    	}
+    	//confronta matrice di carta obiettivo con matrice del tavolo. per ogni ripetizione del pattern incrementa num per poterlo moltiplicare alla fine con il punteggio della carta
+    	//cicli per evitare di andare oltre limite della matrice
+    	for (int i=0; i <= tavoloRighe-patternRighe; i++) {
+            for (int j=0; j <= tavoloColonne-patternColonne; j++) {
+                boolean trovato= true;
+                //ciclo per confrontare le icone del pattern e del tavolo
+                for (int k=0; k <patternRighe; k++) {
+                    for (int l=0; l < patternColonne; l++) {
+                        if (risorsaNecessaria2[k][l] != null) {
+                            if (risorsaNecessaria2[k][l] != Icona.ASSENTE && regniTavolo[i+k][j+l] != null) {
+                                if (!risorsaNecessaria2[k][l].equals(regniTavolo[i+k][j+l])) {
+                                	trovato = false;
+                                    break;
+                                }
+                            } else if (risorsaNecessaria2[k][l] == Icona.ASSENTE && regniTavolo[i+k][j+l]!= null) {
+                            	trovato=false;
+                                break;
+                            }
+                        } else if (regniTavolo[i+k][j+l] != null) {
+                        	trovato=false;
+                            break;
+                        }
+                    }
+                    if(!trovato) {
+                    	break;
+                    }
+                }
+                if(trovato) {
+                    num++;
+                }
+            }
+        }
     	int punteggio=num * puntiCarta;
         return punteggio;
     }
@@ -124,7 +148,8 @@ class CartaObiettivo extends Carta {
     public Icona[] getRisorsaNecessaria() {
 		return risorsaNecessaria;
 	}
-    public Icona[][] getRisorsaNecessaria2(Obiettivo c) {
+    //restituisce matrici di dimensioni diverse al seconda del type della carta obiettivo
+    public Icona[][] getRisorsaNecessaria2(CartaObiettivo c) {
     	int type=c.getType();
     	if(type==1) {
     		return risorsaNecessaria2;

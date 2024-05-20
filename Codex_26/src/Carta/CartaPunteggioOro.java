@@ -6,12 +6,12 @@ import Codex_26.Tavolo;
 import java.util.ArrayList;
 
 class CartaPunteggioOro extends Carta {
-	private final Angolo[] angoliFronte=new Angolo[4];
-	private final Angolo[] angoliRetro=new Angolo[5];
+	private Angolo[] angoliFronte=new Angolo[4];
+	private Angolo[] angoliRetro=new Angolo[5];
 	private final Icona[] risorseMinime=new Icona[5];
 	private final Icona regno;
-	private int punteggio;
-	private int type;
+	private final int punteggio;
+	private final int type;
 	private Icona dipIcona;
 	
 	/*costruttore cartaPunteggioOro, riceve come parametri punti assegnati, le risorse per poterla usare e le proprietà degli angoli retro/fronte
@@ -59,6 +59,7 @@ class CartaPunteggioOro extends Carta {
 	public int contaAngoliCoperti(Tavolo tavolo, int riga, int colonna) {
 		int coperti=0;
 		Carta[][] carteTavolo=tavolo.getTabellone();
+		//se l'angolo viene coperto getnascosto->true e incrementa il numero di angoli coperti
 		//controllo alto sx
 		 if(riga>0 && colonna>0) {
 	            if(carteTavolo[riga-1][colonna-1]!= null) {

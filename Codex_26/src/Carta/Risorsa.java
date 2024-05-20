@@ -5,8 +5,8 @@ import prova.Icona;
 
 public class Risorsa extends Carta {
 	
-	private final Angolo[] angoliFronte=new Angolo[4];
-	private final Angolo[] angoliRetro=new Angolo[5];
+	private Angolo[] angoliFronte=new Angolo[4];
+	private Angolo[] angoliRetro=new Angolo[5];
 	private final Icona regno;
 	private final int punteggio;
 	
