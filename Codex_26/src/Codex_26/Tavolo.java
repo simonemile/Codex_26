@@ -2,7 +2,6 @@ package Codex_26;
 
 import java.util.ArrayList;
 import Carta.*;
-import prova.Icona;
 
 public class Tavolo {
 	
@@ -59,83 +58,94 @@ public class Tavolo {
     }
     
     
-    public boolean controllaPosCarta(int rigaC, int colonnaC,Tavolo t, Carta c) {
+    public boolean controllaPosCarta(int rigaC, int colonnaC,Tavolo t) {
     	Carta[][] cartePresenti=t.getTabellone();
     	//controllo se ci sono già carte in cella richiesta
     	if(cartePresenti[rigaC][colonnaC]!=null) {
     		return false;
     	}
-    	//controllo necessità espansione tavolo
-    	if(rigaC<0||rigaC>righe||colonnaC<0||colonnaC>colonne) {
-    		t.espandiTavolo(rigaC, colonnaC);
-    	}
-    	//controllo se la carta non venga posizionata adiacentemente a una esistente
-    	//utilizzo solo celle adiacenti alla posizione della nuova carta
-    	for(int riga=rigaC-1; riga<=rigaC+1; riga++) {
-    		for(int colonna=colonnaC-1; colonna<=colonnaC+1; colonna++) {
-    			if((riga==rigaC||colonna==colonnaC)&& !(riga==rigaC && colonna==colonnaC)) {//esclude pos carta stessa e considera solo stessi valori riga/colonna per tenere true pos diagonali
-    				if(cartePresenti[riga][colonna]!=null && riga>=0 && riga<righe && colonna>=0 && colonna<colonne) {
-    					return false;
-    				}
-    			}
-    		}
-    	}
-    	//controllo uguaglianze Icone agli angoli delle carte poste diagonalmente
+    	//controllo Icone agli angoli delle carte poste diagonalmente
     	//prendo le 4 carte direttamente in diagonale a quella che voglio piazzare
     	//di tali carte considero gli angoli d'interesse per la carta da piazzare
-    	Carta gsx,gdx,sdx,ssx;
+    	Carta gsx=null,gdx=null,sdx=null,ssx=null;
     	if(rigaC > 0 && colonnaC > 0) {
     	    gsx = cartePresenti[rigaC-1][colonnaC-1];//carta basso sinistra
-    	    Icona asd = gsx.getAngolo()[1].getIcona();//angolo alto destra
-    	    Icona angoloCarta= c.getAngolo()[2].getIcona();
-    	    if() {
+    	    //considera angolo alto destra
+    	    if(gsx != null && gsx.getAngolo()[1].getIcona() == Icona.ASSENTE) {
     	    	return false;
     	    }
-    	}else {
-    		gsx=null;
     	}
     	if(rigaC < cartePresenti.length-1 && colonnaC>0) {
-    	    Carta gdx = cartePresenti[rigaC+1][colonnaC-1];//carta basso destra
-    	    Icona ass = gdx.getAngolo()[0].getIcona();//angolo alto sinistra
-    	    Icona angoloCarta= c.getAngolo()[3].getIcona();
-    	    if() {
+    	     gdx = cartePresenti[rigaC+1][colonnaC-1];//carta basso destra
+    	  //considero angolo alto sinistra
+    	    if(gdx != null && gdx.getAngolo()[0].getIcona() == Icona.ASSENTE) {
     	    	return false;
     	    }
-    	}else {
-    		gdx=null;
     	}
     	if (rigaC < cartePresenti.length-1 && colonnaC < cartePresenti[0].length-1) {
-    	    Carta sdx = cartePresenti[rigaC+1][colonnaC+1];//carta alto destra
-    	    Icona ags = sdx.getAngolo()[2].getIcona();//angolo basso sinistra
-    	    Icona angoloCarta= c.getAngolo()[1].getIcona();
-    	    if() {
+    	     sdx = cartePresenti[rigaC+1][colonnaC+1];//carta alto destra
+    	    //considero angolo basso sinistra
+    	    if(sdx != null && sdx.getAngolo()[2].getIcona() == Icona.ASSENTE) {
     	    	return false;
     	    }
-    	}else {
-    		sdx=null;
     	}
     	if (rigaC>0 && colonnaC <cartePresenti[0].length-1) {
-    	    Carta ssx = cartePresenti[rigaC-1][colonnaC+1];//carta alto sinistra
-    	    Icona agd = ssx.getAngolo()[3].getIcona();//angolo basso destra
-    	    Icona angoloCarta= c.getAngolo()[0].getIcona();
-    	    if() {
+    	     ssx = cartePresenti[rigaC-1][colonnaC+1];//carta alto sinistra
+    	    //considero angolo basso destra
+    	    if(ssx != null && ssx.getAngolo()[3].getIcona() == Icona.ASSENTE) {
     	    	return false;
     	    }
-    	}else {
-    		ssx=null;
     	}
     	//controllo se non esiste alcuna carta in diagonale rispetto a quella da posizionare
+    	//permette anche di non posizionare carte immediatamente ai lati delle carte già preseni sul tavolo
     	if(gsx == null && gdx == null && sdx == null && ssx == null) {
     		return false;
     	}
     	return true;
+ 
+    }
+    
+    public void aggiungiCarte(int riga, int colonna, Carta carta, Tavolo tavolo) {
+    	
+    	espandiTavolo(riga,colonna);
+    	Carta[][] t=tavolo.getTabellone();
+    	
+    	if(controllaPosCarta(riga,colonna,tavolo)) {
+    		t[riga][colonna]=carta;
+    		aggiornaAngoli(riga,colonna,tavolo);
+    		regniDisponibili.add(carta.getRegno());
+    		for (Angolo angolo : carta.getAngolo()) {
+                Icona icona = angolo.getIcona();
+                risorseDisponibili.add(icona);
+            }
+    	}else {
+    		System.out.println("Posizione non possibile per la carta scelta!");
+    	}
     	
     }
     
-    public void aggiungiCarte(int colonna, int riga, Carta carta) {
+    private void aggiornaAngoli(int riga, int colonna, Tavolo tavolo) {
     	
+    	Carta[][] t = tavolo.getTabellone();
+    	
+    	if (riga > 0 && colonna > 0 && t[riga - 1][colonna - 1] != null) {
+            t[riga-1][colonna-1].getAngolo()[3].setIcona(Icona.ASSENTE);
+            risorseDisponibili.remove(t[riga - 1][colonna - 1].getAngolo()[3].getIcona());
+        }
+        if (riga< t.length-1 && colonna< t[0].length - 1 && t[riga+1][colonna+1] != null) {
+            t[riga + 1][colonna + 1].getAngolo()[1].setIcona(Icona.ASSENTE);
+            risorseDisponibili.remove(t[riga+1][colonna+1].getAngolo()[1].getIcona());
+        }
+        if (riga> 0 && colonna< t[0].length-1 && t[riga-1][colonna+1] != null) {
+            t[riga-1][colonna+1].getAngolo()[2].setIcona(Icona.ASSENTE);
+            risorseDisponibili.remove(t[riga-1][colonna+1].getAngolo()[2].getIcona());
+        }
+        if (riga< t.length-1 && colonna>0 && t[riga+1][colonna-1] != null) {
+            t[riga+1][colonna-1].getAngolo()[0].setIcona(Icona.ASSENTE);
+            risorseDisponibili.remove(t[riga+1][colonna-1].getAngolo()[0].getIcona());
+        }
+        
     }
-    
     
     public void stampa() {
     	
@@ -143,9 +153,6 @@ public class Tavolo {
     
 	public Carta[][] getTabellone() {
 		return tabellone;
-	}
-	public void setTabellone(Carta[][] tabellone) {
-		this.tabellone = tabellone;
 	}
 	public ArrayList<Icona> getRisorseDisponibili(){
 		return risorseDisponibili;
