@@ -3,9 +3,6 @@ package Carta;
 import java.util.ArrayList;
 import java.util.List;
 import Codex_26
-import prova.Angolo;
-import prova.Icona;
-import prova.Obiettivo;
 
 class CartaObiettivo extends Carta {
 	
@@ -15,10 +12,12 @@ class CartaObiettivo extends Carta {
     private Icona[][] risorsaNecessaria2=new Icona[3][3];
     private Icona[][] risorsaNecessaria3=new Icona[4][2];
     private final int type;
+    private final TipoCarta n;
     
     //costruttore per carte obiettivo con risorse minime necessarie sul tavolo per ottenimento punti
     //type 0 indica carte obiettivo con richiesta risorse minime
     public CartaObiettivo(int punteggio, Icona r1, Icona r2, Icona r3) {
+    	this.n=TipoCarta.OBIETTIVO;
     	this.type=0;
     	this.girata=true;
     	this.punteggio=punteggio;
@@ -31,6 +30,7 @@ class CartaObiettivo extends Carta {
     //tipo indica grandezza matrice necessaria
     //tipo 1 indica costruttore per matrice 3x3, tipo 2 matrice 4x2
     public CartaObiettivo(int punteggio,int type, Icona reg11, Icona reg12, Icona reg13,Icona reg21, Icona reg22, Icona reg23,Icona reg31, Icona reg32, Icona reg33) {
+    	this.n=TipoCarta.OBIETTIVO;
     	this.girata=true;
     	this.type=1;
     	this.punteggio=punteggio;
@@ -46,6 +46,7 @@ class CartaObiettivo extends Carta {
     }
     
     public CartaObiettivo(Icona reg11,int type, Icona reg12, Icona reg21, Icona reg22, Icona reg31, Icona reg32, Icona reg41, Icona reg42) {
+    	this.n=TipoCarta.OBIETTIVO;
     	this.girata=true;
     	this.type=2;
     	this.punteggio=punteggio;
@@ -165,7 +166,10 @@ class CartaObiettivo extends Carta {
 	public Angolo[] getAngolo() {
 		return null;
 	}
-    
+	@Override
+	public TipoCarta getTipoCarta() {
+		return n;
+	}
     @Override
 	public Icona getRegno() {
 		return Icona.ASSENTE;

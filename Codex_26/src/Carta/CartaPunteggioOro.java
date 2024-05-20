@@ -1,8 +1,6 @@
 package Carta;
 
 import Codex_26.Tavolo;
-import Codex_26.Tavolo;
-
 import java.util.ArrayList;
 
 class CartaPunteggioOro extends Carta {
@@ -12,7 +10,8 @@ class CartaPunteggioOro extends Carta {
 	private final Icona regno;
 	private final int punteggio;
 	private final int type;
-	private Icona dipIcona;
+	private final Icona dipIcona;
+	private final TipoCarta n;
 	
 	/*costruttore cartaPunteggioOro, riceve come parametri punti assegnati, le risorse per poterla usare e le proprietà degli angoli retro/fronte
 	**la carta avrà icone diversi agli angoli a seconda se questa sia girata o meno
@@ -20,6 +19,7 @@ class CartaPunteggioOro extends Carta {
 	**dipIcona indica l'icona da cui dipendono i punteggi di alcune carte
 	*/
 	public CartaPunteggioOro(int punteggio, int type, Icona dipIcona, Icona regno, Icona r1,Icona r2, Icona r3, Icona r4, Icona r5,Icona a1, Icona a2, Icona a3, Icona a4) {
+		this.n=TipoCarta.ORO;
 		this.regno=regno;
 		this.type=type;
 		if(isGirata()) {	
@@ -124,6 +124,10 @@ class CartaPunteggioOro extends Carta {
 	@Override
 	public Icona getRegno() {
 		return regno;
+	}
+	@Override
+	public TipoCarta getTipoCarta() {
+		return n;
 	}
 
 }

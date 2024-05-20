@@ -3,6 +3,7 @@ package Carta;
 import java.util.List;
 
 import prova.Angolo;
+import prova.TipoCarta;
 
 public abstract class Carta {
 	
@@ -10,6 +11,7 @@ public abstract class Carta {
     
     public abstract Icona getRegno();
     public abstract Angolo[] getAngolo();
+    public abstract TipoCarta getTipoCarta();
     
     //metodo per girare le carte
     public void girare() {

@@ -64,6 +64,10 @@ public class Tavolo {
     	if(cartePresenti[rigaC][colonnaC]!=null) {
     		return false;
     	}
+    	//controllo validità del tipo di carta scelta
+    	if(cartePresenti[rigaC][colonnaC].getTipoCarta()==TipoCarta.OBIETTIVO||cartePresenti[rigaC][colonnaC].getTipoCarta()==TipoCarta.INIZIALE) {
+    		return false;
+    	}
     	//controllo Icone agli angoli delle carte poste diagonalmente
     	//prendo le 4 carte direttamente in diagonale a quella che voglio piazzare
     	//di tali carte considero gli angoli d'interesse per la carta da piazzare
@@ -127,22 +131,22 @@ public class Tavolo {
     private void aggiornaAngoli(int riga, int colonna, Tavolo tavolo) {
     	
     	Carta[][] t = tavolo.getTabellone();
-    	
-    	if (riga > 0 && colonna > 0 && t[riga - 1][colonna - 1] != null) {
+    	//considera gli angoli che vengono coperti dalla nuova carta, li rimuove dall'arraylist delle risorse disponibili e li setta a Icona.ASSENTE
+    	if (riga > 0 && colonna > 0 && t[riga-1][colonna-1] != null) {
+            risorseDisponibili.remove(t[riga-1][colonna-1].getAngolo()[3].getIcona());
             t[riga-1][colonna-1].getAngolo()[3].setIcona(Icona.ASSENTE);
-            risorseDisponibili.remove(t[riga - 1][colonna - 1].getAngolo()[3].getIcona());
         }
         if (riga< t.length-1 && colonna< t[0].length - 1 && t[riga+1][colonna+1] != null) {
-            t[riga + 1][colonna + 1].getAngolo()[1].setIcona(Icona.ASSENTE);
-            risorseDisponibili.remove(t[riga+1][colonna+1].getAngolo()[1].getIcona());
+        	risorseDisponibili.remove(t[riga+1][colonna+1].getAngolo()[1].getIcona());
+        	t[riga + 1][colonna + 1].getAngolo()[1].setIcona(Icona.ASSENTE);
         }
         if (riga> 0 && colonna< t[0].length-1 && t[riga-1][colonna+1] != null) {
+        	risorseDisponibili.remove(t[riga-1][colonna+1].getAngolo()[2].getIcona());
             t[riga-1][colonna+1].getAngolo()[2].setIcona(Icona.ASSENTE);
-            risorseDisponibili.remove(t[riga-1][colonna+1].getAngolo()[2].getIcona());
         }
         if (riga< t.length-1 && colonna>0 && t[riga+1][colonna-1] != null) {
+        	 risorseDisponibili.remove(t[riga+1][colonna-1].getAngolo()[0].getIcona());
             t[riga+1][colonna-1].getAngolo()[0].setIcona(Icona.ASSENTE);
-            risorseDisponibili.remove(t[riga+1][colonna-1].getAngolo()[0].getIcona());
         }
         
     }
