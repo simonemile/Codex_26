@@ -1,6 +1,7 @@
 package Carta;
 
-import Codex_26.Tavolo;
+import Codex_26.*;
+
 import java.util.ArrayList;
 
 class CartaPunteggioOro extends Carta {
@@ -12,6 +13,7 @@ class CartaPunteggioOro extends Carta {
 	private final int type;
 	private final Icona dipIcona;
 	private final TipoCarta n;
+	private final boolean copreAngoli;
 	
 	/*costruttore cartaPunteggioOro, riceve come parametri punti assegnati, le risorse per poterla usare e le proprietà degli angoli retro/fronte
 	**la carta avrà icone diversi agli angoli a seconda se questa sia girata o meno
@@ -23,6 +25,7 @@ class CartaPunteggioOro extends Carta {
 		this.regno=regno;
 		this.type=type;
 		if(isGirata()) {	
+			this.dipIcona=Icona.ASSENTE;	
 			this.punteggio=0;
 			this.angoliRetro[0]=new Angolo(Icona.VUOTO);
 			this.angoliRetro[1]=new Angolo(Icona.VUOTO);
@@ -30,6 +33,8 @@ class CartaPunteggioOro extends Carta {
 			this.angoliRetro[3]=new Angolo(Icona.VUOTO);
 			this.angoliRetro[4]=new Angolo(regno);
 		}else {
+			this.copreAngoli=copreAngoli;
+			this.dipIcona=dipIcona;
 			this.punteggio=punteggio;
 			this.risorseMinime[0]=r1;
 			this.risorseMinime[1]=r2;
@@ -96,7 +101,35 @@ class CartaPunteggioOro extends Carta {
 		return coperti;
 	}
 	
-
+	//metodo per contare ripetizione di risorse nel caso il punteggio sia assegnato in base alle risorse disponibili sul tavolo
+	public int contaDipIcona(CartaPunteggioOro c, Tavolo t) {
+		int ripetizione=0;
+		Icona iconaCercata=c.getDipIcona();
+	   	ArrayList<Icona> risorseDisponibili=t.getRisorseDisponibili();
+	   	for(Icona elemento:risorseDisponibili) {
+	   		if(elemento.equals(iconaCercata)) {
+	   			ripetizione++;
+	   		}
+	   	}
+	  		return ripetizione;
+	}
+	
+/*	public int assegnaPunti(CartaPunteggioOro c, Tavolo t, Segnalino s) {
+		int tipoCarta=c.getType();
+		int punteggioCarta=c.getPunteggio();
+		if(isGirata()==false) {
+			if(tipoCarta==0) {
+				s.setPos(punteggioCarta);
+			}else if(tipoCarta==1) {
+				int numRisorse=c.contaDipIcona(c, t);
+				s.setPos(numRisorse*punteggioCarta);
+			}else if(tipoCarta==2) {
+				int numAngoli=c.contaAngoliCoperti(t, tipoCarta, punteggioCarta)
+			}
+		}
+		return 0;
+	}
+*/
 	public int getPunteggio() {
 		return punteggio;
 	}
@@ -111,6 +144,9 @@ class CartaPunteggioOro extends Carta {
 	}
 	public Icona getDipIcona() {
 		return dipIcona;
+	}
+	public int getType() {
+		return type;
 	}
 	
 	@Override

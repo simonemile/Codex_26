@@ -15,6 +15,8 @@ public class Tavolo {
     	righe=1;
     	colonne=1;
     	tabellone=new Carta[righe][colonne];
+    	risorseDisponibili = new ArrayList<>();
+        regniDisponibili = new ArrayList<>();
     }
     
     //questo metodo permette di espandere la matrice nel momento in cui si voglia inserire 
@@ -134,19 +136,19 @@ public class Tavolo {
     	//considera gli angoli che vengono coperti dalla nuova carta, li rimuove dall'arraylist delle risorse disponibili e li setta a Icona.ASSENTE
     	if (riga > 0 && colonna > 0 && t[riga-1][colonna-1] != null) {
             risorseDisponibili.remove(t[riga-1][colonna-1].getAngolo()[3].getIcona());
-            t[riga-1][colonna-1].getAngolo()[3].setIcona(Icona.ASSENTE);
+            t[riga-1][colonna-1].getAngolo()[3].setNascosto();
         }
         if (riga< t.length-1 && colonna< t[0].length - 1 && t[riga+1][colonna+1] != null) {
         	risorseDisponibili.remove(t[riga+1][colonna+1].getAngolo()[1].getIcona());
-        	t[riga + 1][colonna + 1].getAngolo()[1].setIcona(Icona.ASSENTE);
+        	t[riga + 1][colonna + 1].getAngolo()[1].setNascosto();
         }
         if (riga> 0 && colonna< t[0].length-1 && t[riga-1][colonna+1] != null) {
         	risorseDisponibili.remove(t[riga-1][colonna+1].getAngolo()[2].getIcona());
-            t[riga-1][colonna+1].getAngolo()[2].setIcona(Icona.ASSENTE);
+            t[riga-1][colonna+1].getAngolo()[2].setNascosto();
         }
         if (riga< t.length-1 && colonna>0 && t[riga+1][colonna-1] != null) {
         	 risorseDisponibili.remove(t[riga+1][colonna-1].getAngolo()[0].getIcona());
-            t[riga+1][colonna-1].getAngolo()[0].setIcona(Icona.ASSENTE);
+            t[riga+1][colonna-1].getAngolo()[0].setNascosto();
         }
         
     }

@@ -45,7 +45,7 @@ class CartaObiettivo extends Carta {
     	this.risorsaNecessaria2[2][2]=reg33;
     }
     
-    public CartaObiettivo(Icona reg11,int type, Icona reg12, Icona reg21, Icona reg22, Icona reg31, Icona reg32, Icona reg41, Icona reg42) {
+    public CartaObiettivo(Icona reg11,int type, Icona reg11, Icona reg12, Icona reg21, Icona reg22, Icona reg31, Icona reg32, Icona reg41, Icona reg42) {
     	this.n=TipoCarta.OBIETTIVO;
     	this.girata=true;
     	this.type=2;

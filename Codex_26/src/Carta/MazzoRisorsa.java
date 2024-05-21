@@ -25,7 +25,7 @@ public class MazzoRisorsa extends Mazzo{
 		mazzo.add(c7=new Risorsa(0,Icona.FUNGHI,Icona.FUNGHI,Icona.INSETTI,Icona.PERGAMENA,Icona.VUOTO));
 		mazzo.add(c8=new Risorsa(1,Icona.FUNGHI,Icona.VUOTO,Icona.FUNGHI,Icona.VUOTO,Icona.ASSENTE));
 		mazzo.add(c9=new Risorsa(1,Icona.FUNGHI,Icona.FUNGHI,Icona.ASSENTE,Icona.VUOTO,Icona.VUOTO));
-		mazzo.add(c10=new Risorsa(1,Icona.FUNGHI,Icona.ASSENTE,Icona.VUOTO,Icona.FUNGO,Icona.VUOTO));
+		mazzo.add(c10=new Risorsa(1,Icona.FUNGHI,Icona.ASSENTE,Icona.VUOTO,Icona.FUNGHI,Icona.VUOTO));
 		
 		mazzo.add(c11=new Risorsa(0,Icona.VEGETALE,Icona.VEGETALE,Icona.VUOTO,Icona.VEGETALE,Icona.ASSENTE));
 		mazzo.add(c12=new Risorsa(0,Icona.VEGETALE,Icona.VEGETALE,Icona.VEGETALE,Icona.ASSENTE,Icona.VUOTO));
@@ -53,7 +53,7 @@ public class MazzoRisorsa extends Mazzo{
 		mazzo.add(c32=new Risorsa(0,Icona.INSETTI,Icona.ASSENTE,Icona.VUOTO,Icona.INSETTI,Icona.INSETTI));
 		mazzo.add(c33=new Risorsa(0,Icona.INSETTI,Icona.INSETTI,Icona.ASSENTE,Icona.INSETTI,Icona.VUOTO));
 		mazzo.add(c34=new Risorsa(0,Icona.INSETTI,Icona.VUOTO,Icona.INSETTI,Icona.ASSENTE,Icona.INSETTI));
-		mazzo.add(c35=new Risorsa(0,Icona.INSETTI,Icona.ASSENTE,Icona.PIUMA,Icona.ANIMALI,Icona.INSETTI));
+		mazzo.add(c35=new Risorsa(0,Icona.INSETTI,Icona.ASSENTE,Icona.PIUMA,Icona.ANIMALE,Icona.INSETTI));
 		mazzo.add(c36=new Risorsa(0,Icona.INSETTI,Icona.PERGAMENA,Icona.INSETTI,Icona.ASSENTE,Icona.FUNGHI));
 		mazzo.add(c37=new Risorsa(0,Icona.INSETTI,Icona.INSETTI,Icona.VEGETALE,Icona.INCHIOSTRO,Icona.ASSENTE));
 		mazzo.add(c38=new Risorsa(1,Icona.INSETTI,Icona.INSETTI,Icona.ASSENTE,Icona.VUOTO,Icona.VUOTO));

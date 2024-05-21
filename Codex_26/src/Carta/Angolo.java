@@ -9,10 +9,7 @@ public class Angolo {
 		this.icona=icona;
 		this.nascosto=false;
 	}
-	
-	public void setIcona(Icona icona) {
-		this.icona=icona;
-	}
+
 	public Icona getIcona() {
 		return icona;
 	}	
@@ -22,6 +19,7 @@ public class Angolo {
 	}
 	public void setNascosto(){
 		this.nascosto=true;
+		this.icona=Icona.ASSENTE;
 	}
 		
 }

@@ -31,7 +31,7 @@ public class MazzoOro extends Mazzo{
 
 		mazzo.add(c11=new CartaPunteggioOro(1,1,Icona.PIUMA, Icona.VEGETALE,Icona.VEGETALE,Icona.VEGETALE,Icona.INSETTI,Icona.ASSENTE,Icona.ASSENTE,Icona.PIUMA,Icona.VUOTO,Icona.VUOTO,Icona.ASSENTE));
 		mazzo.add(c12=new CartaPunteggioOro(1,1,Icona.PERGAMENA, Icona.VEGETALE,Icona.VEGETALE,Icona.VEGETALE,Icona.FUNGHI,Icona.ASSENTE,Icona.ASSENTE,Icona.VUOTO,Icona.PERGAMENA,Icona.ASSENTE,Icona.VUOTO));
-		mazzo.add(c13=new CartaPunteggioOro(1,1,Icona.INCHIOSTRO, Icona.VEGETALE,Icona.VEGETALE,Icona.VEGETALE,Icona.ANIAMLE,Icona.ASSENTE,Icona.ASSENTE,Icona.VUOTO,Icona.ASSENTE,Icona.INCHIOSTRO,Icona.VUOTO));
+		mazzo.add(c13=new CartaPunteggioOro(1,1,Icona.INCHIOSTRO, Icona.VEGETALE,Icona.VEGETALE,Icona.VEGETALE,Icona.ANIMALE,Icona.ASSENTE,Icona.ASSENTE,Icona.VUOTO,Icona.ASSENTE,Icona.INCHIOSTRO,Icona.VUOTO));
 		
 		mazzo.add(c14=new CartaPunteggioOro(2,2,Icona.ASSENTE, Icona.VEGETALE,Icona.VEGETALE,Icona.VEGETALE,Icona.VEGETALE,Icona.INSETTI,Icona.ASSENTE,Icona.ASSENTE,Icona.VUOTO,Icona.VUOTO,Icona.VUOTO));
 		mazzo.add(c15=new CartaPunteggioOro(2,2,Icona.ASSENTE, Icona.VEGETALE,Icona.VEGETALE,Icona.VEGETALE,Icona.VEGETALE,Icona.ANIMALE,Icona.ASSENTE,Icona.VUOTO,Icona.VUOTO,Icona.VUOTO,Icona.ASSENTE));
