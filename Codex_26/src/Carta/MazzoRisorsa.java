@@ -9,6 +9,10 @@ public class MazzoRisorsa extends Mazzo{
 	private Risorsa	c16,c17,c18,c19,c20,c21,c22,c23,c24,c25,c26,c27,c28;
 	private Risorsa c29,c30,c31,c32,c33,c34,c35,c36,c37,c38,c39,c40;
 	
+	 public boolean isEmpty() {
+	        return mazzo.isEmpty();
+	 }
+	 
 	//punti, regno, a1,a2,a3,a4
 	//VEGETALE, ANIMALE, FUNGHI, INSETTI, PIUMA, INCHIOSTRO, PERGAMENA, VUOTO, ASSENTE;
 	@Override

@@ -8,7 +8,6 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		 boolean fine =false;
 	        Scanner scanner = new Scanner(System.in);
 	        int numeroGiocatori=0;
@@ -23,7 +22,7 @@ public class Main {
 	        mObb.aggiungiCarta();
 	        MazzoRisorsa mRis=new MazzoRisorsa();
         	mRis.aggiungiCarta();
-        	MazzoPunteggioOro mOro=new MazzoPunteggioOro();
+        	MazzoOro mOro=new MazzoOro();
         	mOro.aggiungiCarta();
 	        int maxPunteggio=0;
 	        
@@ -43,7 +42,23 @@ public class Main {
 	        		numeroGiocatori++;
 	        		tavolo[numeroGiocatori]=new Tavolo();
 	        		segnalino[numeroGiocatori]=new Segnalino();
-	        		CartaObiettivo obbPersonale=mObb.pescaCarta();
+	        		CartaObiettivo obbPersonale1=mObb.pescaCarta();
+	        		CartaObiettivo obbPersonale2=mObb.pescaCarta();
+	        		System.out.println("Scegliere con 1 o 2 quale carta scegliere");
+	        		CartaObiettivo obbPersonale;
+	        		int numObb;
+	        		//ciclo per decidere quale carta obiettivo ricevere
+	        		do {
+	        			numObb=scanner.nextInt();
+	        			if(numObb==1) {
+	        				obbPersonale=obbPersonale1;
+	        			}else if(numObb==2) {
+	        				obbPersonale=obbPersonale2;
+	        			}else {
+	        				System.out.println("Gli obiettivi sono 2");
+	        			}
+	        			scanner.reset();
+	        		}while(numObb!=1 || numObb!=2);
 	        		giocatori.add(new Giocatore(nome,numeroGiocatori,tavolo[numeroGiocatori],segnalino[numeroGiocatori], obbPersonale));
 	        		//impostazione colori dei segnalini associati ai giocatori
 	        		if(numeroGiocatori==1) {
@@ -71,17 +86,26 @@ public class Main {
 	        	System.out.println("Regolamento: \nPer decidere se posizionare una carta fronte o retro premere rispettivamente u, d \n Per decidere posizione della carta indicare numero delle coordinate desiderate\n");
 	        	System.out.println("Nella selezione di azioni del turno 1-2: prendono carte risorse scoperte, 3-4: prendono carte oro scoperte, 5:pesca dal mazzo risorsa, 6: pesca dal mazzo oro");
 	        	do {
-        			
 	        		System.out.println("Turno numero: "+turno);
 	        		for(Giocatore giocatore: giocatori) {
 	        			if(mRis.isEmpty() && mOro.isEmpty()) {
 	        				break;
 	        			}
+	        			Segnalino personaleSegnalino=giocatore.getSegnalino();
+	        			Tavolo personaleTavolo=giocatore.getTavolo();
+	        			ArrayList<Carta> personaleMano=giocatore.getCarteInMano();
 	        			System.out.println("Turno di: "+giocatore.getNome());
+	        			//azioni compiute nel primo turno
 	        			if(turno==1) {
-	        				mIniz.pescaCarta();
+	        				personaleMano.add(mOro.pescaCarta());
+	        				personaleMano.add(mRis.pescaCarta());
+	        				personaleMano.add(mRis.pescaCarta());
+	        				Iniziale primaCarta= mIniz.pescaCarta();
 	        				System.out.println("Decidere se posizionare la carta di fronte o retro: ");
+	        				primaCarta.decisioneLato();
+	        				personaleTavolo.aggiungiCarte(0,0,primaCarta,personaleTavolo);
 	        			}
+	        			
 	        			
 	        			
 	        			

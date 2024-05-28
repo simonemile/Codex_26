@@ -9,6 +9,9 @@ public class MazzoOro extends Mazzo{
 	private CartaPunteggioOro	c16,c17,c18,c19,c20,c21,c22,c23,c24,c25,c26,c27,c28;
 	private CartaPunteggioOro c29,c30,c31,c32,c33,c34,c35,c36,c37,c38,c39,c40;
 	
+	 public boolean isEmpty() {
+	        return mazzo.isEmpty();
+	 }
 	
 	//int punteggio, int type, Icona dipIcona, Icona regno, Icona r1,Icona r2, Icona r3, Icona r4, Icona r5,Icona a1, Icona a2, Icona a3, Icona a4
 	@Override

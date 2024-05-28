@@ -20,7 +20,16 @@ public class Giocatore {
 		this.obiettivoPersonale=obiettivoPersonale;
 		this.carteInMano=new ArrayList<>();
 	}
-
+	
+	public ArrayList<Carta> getCarteInMano() {
+	    return carteInMano;
+	}
+	public Segnalino getSegnalino() {
+		return segnalino;
+	}
+	public Tavolo getTavolo() {
+		return tavolo;
+	}
 	public String getNome() {
 		return nome;
 	}

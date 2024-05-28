@@ -1,9 +1,7 @@
 package Carta;
 
 import java.util.List;
-
-import prova.Angolo;
-import prova.TipoCarta;
+import java.util.Scanner;
 
 public abstract class Carta {
 	
@@ -23,6 +21,23 @@ public abstract class Carta {
 	}
 	public void setGirata(boolean girata) {
 		this.girata = girata;
+	}
+	
+	public void decisioneLato() {
+		boolean decisione=false;
+		Scanner scanner=new Scanner(System.in);
+		while(!decisione) {
+			char a = scanner.next().charAt(0);
+			if(a=='u') {
+				setGirata(false);
+				decisione=true;
+			}else if(a=='d') {
+				setGirata(true);
+				decisione=true;
+			}else {
+				System.out.println("Lettera non valida, riprova!");
+			}
+		}
 	}
 	
 }
