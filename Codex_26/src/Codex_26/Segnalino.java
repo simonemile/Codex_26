@@ -1,4 +1,5 @@
 package Codex_26;
+import java.util.Random;
 
 public class Segnalino {
 		
@@ -6,22 +7,28 @@ public class Segnalino {
 	private Colore colore;
 	private Colore coloreSecondario;
 	
+	public Colore randomizzaColore() {
+		Colore[] c=Colore.values();
+		Random random= new Random();
+		int n=random.nextInt(c.length);
+		Colore randomColore=c[n];
+		return randomColore;
+	}
+	
 	public int getPos() {
 		return pos;
 	}
 	public void setPos(int incremento) {
 		this.pos += incremento;
 	}
-	public Colore getColore() {
-		return colore;
+	public void setColore(Colore colore) {
+		this.colore = colore;
 	}
-	public void setColore(Colore nero) {
-		this.colore = nero;
-	}
-	public Colore getsecondarioColore() {
-		return coloreSecondario;
-	}
-	public void setColoresecondario(Colore coloreSecondario) {
+	public void setColoreSecondario(Colore coloreSecondario) {
 		this.coloreSecondario = coloreSecondario;
 	}
+	public Colore getColoreSegondario() {
+		return coloreSecondario;
+	}
+	
 }

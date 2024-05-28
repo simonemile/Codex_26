@@ -113,12 +113,15 @@ public class Tavolo {
     
     public void aggiungiCarte(int riga, int colonna, Carta carta, Tavolo tavolo) {
     	
+    	//considero righe e colonne da inserire nella matrice
+    	int rigaM=riga-1;
+    	int colonnaM=colonna-1;
     	espandiTavolo(riga,colonna);
     	Carta[][] t=tavolo.getTabellone();
     	
-    	if(controllaPosCarta(riga,colonna,tavolo)) {
-    		t[riga][colonna]=carta;
-    		aggiornaAngoli(riga,colonna,tavolo);
+    	if(controllaPosCarta(rigaM,colonnaM,tavolo)) {
+    		t[rigaM][colonnaM]=carta;
+    		aggiornaAngoli(rigaM,colonnaM,tavolo);
     		regniDisponibili.add(carta.getRegno());
     		for (Angolo angolo : carta.getAngolo()) {
                 Icona icona = angolo.getIcona();

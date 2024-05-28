@@ -1,7 +1,6 @@
 package Carta;
 
 import Codex_26.*;
-
 import java.util.ArrayList;
 
 class CartaPunteggioOro extends Carta {
@@ -13,7 +12,6 @@ class CartaPunteggioOro extends Carta {
 	private final int type;
 	private final Icona dipIcona;
 	private final TipoCarta n;
-	private final boolean copreAngoli;
 	
 	/*costruttore cartaPunteggioOro, riceve come parametri punti assegnati, le risorse per poterla usare e le proprietà degli angoli retro/fronte
 	**la carta avrà icone diversi agli angoli a seconda se questa sia girata o meno
@@ -33,7 +31,6 @@ class CartaPunteggioOro extends Carta {
 			this.angoliRetro[3]=new Angolo(Icona.VUOTO);
 			this.angoliRetro[4]=new Angolo(regno);
 		}else {
-			this.copreAngoli=copreAngoli;
 			this.dipIcona=dipIcona;
 			this.punteggio=punteggio;
 			this.risorseMinime[0]=r1;
@@ -124,7 +121,7 @@ class CartaPunteggioOro extends Carta {
 				int numRisorse=c.contaDipIcona(c, t);
 				s.setPos(numRisorse*punteggioCarta);
 			}else if(tipoCarta==2) {
-				int numAngoli=c.contaAngoliCoperti(t, tipoCarta, punteggioCarta)
+				int numAngoli=c.contaAngoliCoperti(t, , )
 			}
 		}
 		return 0;

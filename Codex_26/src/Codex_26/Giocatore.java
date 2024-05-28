@@ -18,6 +18,7 @@ public class Giocatore {
 		this.tavolo=tavolo;
 		this.segnalino=segnalino;
 		this.obiettivoPersonale=obiettivoPersonale;
+		this.carteInMano=new ArrayList<>();
 	}
 
 	public String getNome() {
