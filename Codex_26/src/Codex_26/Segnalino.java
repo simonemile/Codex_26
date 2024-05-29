@@ -7,6 +7,12 @@ public class Segnalino {
 	private Colore colore;
 	private Colore coloreSecondario;
 	
+	public Segnalino(Colore col, Colore col2, int pos) {
+		this.pos=pos;
+		this.colore=colore;
+		this.coloreSecondario=coloreSecondario;
+	}
+	
 	public Colore randomizzaColore() {
 		Colore[] c=Colore.values();
 		Random random= new Random();

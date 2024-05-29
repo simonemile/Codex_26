@@ -12,11 +12,11 @@ public class Tavolo {
     private ArrayList<Icona> regniDisponibili;
     
     public Tavolo() {
-    	righe=1;
-    	colonne=1;
-    	tabellone=new Carta[righe][colonne];
-    	risorseDisponibili = new ArrayList<>();
-        regniDisponibili = new ArrayList<>();
+    	this.righe=1;
+    	this.colonne=1;
+    	this.tabellone=new Carta[righe][colonne];
+    	this.risorseDisponibili = new ArrayList<>();
+    	this.regniDisponibili = new ArrayList<>();
     }
     
     //questo metodo permette di espandere la matrice nel momento in cui si voglia inserire 
@@ -60,14 +60,10 @@ public class Tavolo {
     }
     
     
-    public boolean controllaPosCarta(int rigaC, int colonnaC,Tavolo t) {
+    private boolean controllaPosCarta(int rigaC, int colonnaC,Tavolo t) {
     	Carta[][] cartePresenti=t.getTabellone();
     	//controllo se ci sono già carte in cella richiesta
     	if(cartePresenti[rigaC][colonnaC]!=null) {
-    		return false;
-    	}
-    	//controllo validità del tipo di carta scelta
-    	if(cartePresenti[rigaC][colonnaC].getTipoCarta()==TipoCarta.OBIETTIVO||cartePresenti[rigaC][colonnaC].getTipoCarta()==TipoCarta.INIZIALE) {
     		return false;
     	}
     	//controllo Icone agli angoli delle carte poste diagonalmente
@@ -111,7 +107,7 @@ public class Tavolo {
  
     }
     
-    public void aggiungiCarte(int riga, int colonna, Carta carta, Tavolo tavolo) {
+    public void aggiungiCarte(int riga, int colonna, Carta carta, Tavolo tavolo, boolean s) {
     	
     	//considero righe e colonne da inserire nella matrice
     	int rigaM=riga-1;
@@ -127,8 +123,10 @@ public class Tavolo {
                 Icona icona = angolo.getIcona();
                 risorseDisponibili.add(icona);
             }
+    		s=true;
     	}else {
     		System.out.println("Posizione non possibile per la carta scelta!");
+    		s=false;
     	}
     	
     }

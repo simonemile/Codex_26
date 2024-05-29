@@ -1,7 +1,8 @@
 package Carta;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Scanner;
+
 
 public abstract class Carta {
 	
@@ -37,6 +38,19 @@ public abstract class Carta {
 			}else {
 				System.out.println("Lettera non valida, riprova!");
 			}
+		}
+	}
+	
+	public void castCarta(boolean t,Carta c) {
+		TipoCarta tipo=c.getTipoCarta();
+		if(tipo==TipoCarta.RISORSA) {
+			Risorsa risSelezionata=(Risorsa) c;
+			t=true;
+		}else if(tipo==TipoCarta.ORO) {
+			CartaPunteggioOro oroSelezionata=(CartaPunteggioOro) c;
+			t=true;
+		}else {
+			t=false;
 		}
 	}
 	

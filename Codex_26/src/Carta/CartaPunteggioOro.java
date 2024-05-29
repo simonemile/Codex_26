@@ -58,7 +58,7 @@ class CartaPunteggioOro extends Carta {
 	}
 	
 	//permette di contare quanti angoli una carta copre per i punteggi assegnati dipendente dal numero di angoli coperti
-	public int contaAngoliCoperti(Tavolo tavolo, int riga, int colonna) {
+	private int contaAngoliCoperti(Tavolo tavolo, int riga, int colonna) {
 		int coperti=0;
 		Carta[][] carteTavolo=tavolo.getTabellone();
 		//se l'angolo viene coperto getnascosto->true e incrementa il numero di angoli coperti
@@ -99,7 +99,7 @@ class CartaPunteggioOro extends Carta {
 	}
 	
 	//metodo per contare ripetizione di risorse nel caso il punteggio sia assegnato in base alle risorse disponibili sul tavolo
-	public int contaDipIcona(CartaPunteggioOro c, Tavolo t) {
+	private int contaDipIcona(CartaPunteggioOro c, Tavolo t) {
 		int ripetizione=0;
 		Icona iconaCercata=c.getDipIcona();
 	   	ArrayList<Icona> risorseDisponibili=t.getRisorseDisponibili();
@@ -111,7 +111,7 @@ class CartaPunteggioOro extends Carta {
 	  		return ripetizione;
 	}
 	
-/*	public int assegnaPunti(CartaPunteggioOro c, Tavolo t, Segnalino s) {
+	public void assegnaPunti(CartaPunteggioOro c, Tavolo t, Segnalino s, int x, int y) {
 		int tipoCarta=c.getType();
 		int punteggioCarta=c.getPunteggio();
 		if(isGirata()==false) {
@@ -121,12 +121,12 @@ class CartaPunteggioOro extends Carta {
 				int numRisorse=c.contaDipIcona(c, t);
 				s.setPos(numRisorse*punteggioCarta);
 			}else if(tipoCarta==2) {
-				int numAngoli=c.contaAngoliCoperti(t, , )
+				int numAngoli=c.contaAngoliCoperti(t, x, y);
+				s.setPos(numAngoli*punteggioCarta);
 			}
 		}
-		return 0;
 	}
-*/
+
 	public int getPunteggio() {
 		return punteggio;
 	}

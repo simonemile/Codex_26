@@ -1,8 +1,9 @@
 package Carta;
 
 import java.util.ArrayList;
-import java.util.List;
 import Codex_26
+
+import java.util.ArrayList;
 
 class CartaObiettivo extends Carta {
 	
@@ -45,7 +46,7 @@ class CartaObiettivo extends Carta {
     	this.risorsaNecessaria2[2][2]=reg33;
     }
     
-    public CartaObiettivo(Icona reg11,int type, Icona reg11, Icona reg12, Icona reg21, Icona reg22, Icona reg31, Icona reg32, Icona reg41, Icona reg42) {
+    public CartaObiettivo(int punteggio,int type, Icona reg11, Icona reg12, Icona reg21, Icona reg22, Icona reg31, Icona reg32, Icona reg41, Icona reg42) {
     	this.n=TipoCarta.OBIETTIVO;
     	this.girata=true;
     	this.type=2;
@@ -61,7 +62,7 @@ class CartaObiettivo extends Carta {
     }
     	
   //metodo per assegnare il punteggio per le carte obiettivo che richiedono un minimo di risorse sul tavolo
-    public int assegnaPunteggio1(Tavolo tavolo, CartaObiettivo c) {
+    private int assegnaPunteggio1(Tavolo tavolo, CartaObiettivo c) {
         int num = 0;
         int puntiCarta = c.getPunteggio();
         Icona[] risorsaNecessaria=c.getRisorsaNecessaria();;
@@ -85,10 +86,10 @@ class CartaObiettivo extends Carta {
     }
     
     //metodo per assegnare il punteggio per le carte obiettivo che presentano un pattern
-    public int assegnaPunteggio2(Tavolo tavolo, CartaObietttivo c) {
+    private int assegnaPunteggio2(Tavolo tavolo, CartaObiettivo c) {
     	int num=0;
     	int puntiCarta=c.getPunteggio();
-    	Icona[][] risorsaNecessaria2=new Icona[][];
+    	Icona[][] risorsaNecessaria2;
     	risorsaNecessaria2=c.getRisorsaNecessaria2(c);
     	Carta[][] carteTavolo=tavolo.getTabellone();
     	Icona[][] regniTavolo=new Icona[carteTavolo.length][carteTavolo[0].length];
@@ -140,6 +141,17 @@ class CartaObiettivo extends Carta {
         }
     	int punteggio=num * puntiCarta;
         return punteggio;
+    }
+    
+    public int assegnaPunteggio(CartaObiettivo c, Tavolo t) {
+    	int type=c.getType();
+    	int res=0;
+    	if(type==0) {
+    		res=c.assegnaPunteggio1(t,c);
+    	}else if(type==1||type==2) {
+    		res=c.assegnaPunteggio2(t, c);
+    	}
+    	return res;
     }
     
     
