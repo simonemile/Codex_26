@@ -37,20 +37,8 @@ public abstract class Carta {
 				decisione=true;
 			}else {
 				System.out.println("Lettera non valida, riprova!");
+				scanner.reset();
 			}
-		}
-	}
-	
-	public void castCarta(boolean t,Carta c) {
-		TipoCarta tipo=c.getTipoCarta();
-		if(tipo==TipoCarta.RISORSA) {
-			Risorsa risSelezionata=(Risorsa) c;
-			t=true;
-		}else if(tipo==TipoCarta.ORO) {
-			CartaPunteggioOro oroSelezionata=(CartaPunteggioOro) c;
-			t=true;
-		}else {
-			t=false;
 		}
 	}
 	

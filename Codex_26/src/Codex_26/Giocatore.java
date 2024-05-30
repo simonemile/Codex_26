@@ -24,6 +24,9 @@ public class Giocatore {
 	public ArrayList<Carta> getCarteInMano() {
 	    return carteInMano;
 	}
+	public CartaObiettivo getObiettivoPersonale() {
+		return obiettivoPersonale;
+	}
 	public Segnalino getSegnalino() {
 		return segnalino;
 	}
