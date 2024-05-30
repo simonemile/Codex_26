@@ -29,6 +29,10 @@ public class Risorsa extends Carta {
 		}
 	}
 	
+	public int getPunteggio() {
+		return punteggio;
+	}
+	
 	@Override
 	public Angolo[] getAngolo() {
 		if(isGirata()) {

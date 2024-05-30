@@ -1,11 +1,13 @@
 package Codex_26;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import Carta.*;
 
 public class Tavolo {
-	
-    private Carta[][] tabellone;
+
+	private Carta[][] tabellone;
     private int righe;
     private int colonne;
     private ArrayList<Icona> risorseDisponibili;
@@ -19,11 +21,12 @@ public class Tavolo {
     	this.regniDisponibili = new ArrayList<>();
     }
     
-    //questo metodo permette di espandere la matrice nel momento in cui si voglia inserire 
+
+	//questo metodo permette di espandere la matrice nel momento in cui si voglia inserire 
     //una carta al di fuori delle righe e colonne già creati dal costruttore
-    private void espandiTavolo(int rigaC, int colonnaC){
+    private Tavolo espandiTavolo(int rigaC, int colonnaC){
     	boolean espandi=false;
-    	if((rigaC==0||rigaC==righe-1) || (colonnaC==0 || colonnaC==colonne-1)) {
+    	if((rigaC==0||rigaC==righe) || (colonnaC==0 || colonnaC==colonne)) {
     		espandi=true;
     	}
     	if(espandi) {
@@ -53,80 +56,95 @@ public class Tavolo {
     				nuovoTabellone[i+rigaInizio][j+colonnaInizio]=tabellone[i][j];
     			}	
     		}
-    		tabellone=nuovoTabellone;
-    		righe=righe2;
-    		colonne=colonne2;
+    		righe = righe2;
+            colonne = colonne2;
+            tabellone = nuovoTabellone;
     	}
+    	return this;
     }
     
     
-    private boolean controllaPosCarta(int rigaC, int colonnaC,Tavolo t) {
-    	Carta[][] cartePresenti=t.getTabellone();
-    	//controllo se ci sono già carte in cella richiesta
-    	if(cartePresenti[rigaC][colonnaC]!=null) {
-    		return false;
-    	}
-    	//controllo Icone agli angoli delle carte poste diagonalmente
-    	//prendo le 4 carte direttamente in diagonale a quella che voglio piazzare
-    	//di tali carte considero gli angoli d'interesse per la carta da piazzare
-    	Carta gsx=null,gdx=null,sdx=null,ssx=null;
-    	if(rigaC > 0 && colonnaC > 0) {
-    	    gsx = cartePresenti[rigaC-1][colonnaC-1];//carta basso sinistra
-    	    //considera angolo alto destra
-    	    if(gsx != null && gsx.getAngolo()[1].getIcona() == Icona.ASSENTE) {
-    	    	return false;
-    	    }
-    	}
-    	if(rigaC < cartePresenti.length-1 && colonnaC>0) {
-    	     gdx = cartePresenti[rigaC+1][colonnaC-1];//carta basso destra
-    	  //considero angolo alto sinistra
-    	    if(gdx != null && gdx.getAngolo()[0].getIcona() == Icona.ASSENTE) {
-    	    	return false;
-    	    }
-    	}
-    	if (rigaC < cartePresenti.length-1 && colonnaC < cartePresenti[0].length-1) {
-    	     sdx = cartePresenti[rigaC+1][colonnaC+1];//carta alto destra
-    	    //considero angolo basso sinistra
-    	    if(sdx != null && sdx.getAngolo()[2].getIcona() == Icona.ASSENTE) {
-    	    	return false;
-    	    }
-    	}
-    	if (rigaC>0 && colonnaC <cartePresenti[0].length-1) {
-    	     ssx = cartePresenti[rigaC-1][colonnaC+1];//carta alto sinistra
-    	    //considero angolo basso destra
-    	    if(ssx != null && ssx.getAngolo()[3].getIcona() == Icona.ASSENTE) {
-    	    	return false;
-    	    }
-    	}
-    	//controllo se non esiste alcuna carta in diagonale rispetto a quella da posizionare
-    	//permette anche di non posizionare carte immediatamente ai lati delle carte già preseni sul tavolo
-    	if(gsx == null && gdx == null && sdx == null && ssx == null) {
-    		return false;
-    	}
-    	return true;
- 
-    }
-    
-    public void aggiungiCarte(int riga, int colonna, Carta carta, Tavolo tavolo, boolean s) {
-    	
-    	//considero righe e colonne da inserire nella matrice
-    	int rigaM=riga-1;
-    	int colonnaM=colonna-1;
-    	espandiTavolo(riga,colonna);
-    	Carta[][] t=tavolo.getTabellone();
-    	
-    	if(controllaPosCarta(rigaM,colonnaM,tavolo)) {
-    		t[rigaM][colonnaM]=carta;
-    		aggiornaAngoli(rigaM,colonnaM,tavolo);
-    		regniDisponibili.add(carta.getRegno());
-    		for (Angolo angolo : carta.getAngolo()) {
-                Icona icona = angolo.getIcona();
-                risorseDisponibili.add(icona);
+    public boolean controllaPosCarta(int rigaC, int colonnaC,Tavolo t) {
+    	try {
+    		Carta[][] cartePresenti=t.getTabellone();
+    		int x=getRighe();
+    		int y=getColonne();
+    		int rM=rigaC-1;
+    		int cM=colonnaC-1;
+    		//controllo se ci sono già carte in cella richiesta
+    		if(cartePresenti[rM][cM]!=null) {
+    			System.out.println("casella occupata");
+    			return false;
+    		}
+    		//coordinate validi o meno con epansione
+    		if(rigaC>x || colonnaC>y || rigaC<1 || colonnaC<1) {
+    			t=t.espandiTavolo(rigaC,colonnaC);
+    			cartePresenti = t.getTabellone();
+    			x = t.getRighe();
+    			y = t.getColonne();
+    		}
+    		rM=rigaC-1;
+    		cM=colonnaC-1;
+    		if(rigaC>x || colonnaC>y || rigaC<1 || colonnaC< 1) {
+				return false;
+			}
+    		if (cartePresenti[rigaC][colonnaC] != null) {
+                return false;
             }
-    		s=true;
-    	}else {
-    		System.out.println("Posizione non possibile per la carta scelta!");
-    		s=false;
+    		
+    		//controllo Icone agli angoli delle carte poste diagonalmente
+    		//prendo le 4 carte direttamente in diagonale a quella che voglio piazzare
+    		//di tali carte considero gli angoli d'interesse per la carta da piazzare
+    		Carta gsx=null,gdx=null,sdx=null,ssx=null;
+    		if(rM > 0 && cM > 0) {
+    			gsx = cartePresenti[rM-1][cM-1];//carta basso sinistra
+    			//considera angolo alto destra
+    			if(gsx != null && gsx.getAngolo()[1].getIcona() == Icona.ASSENTE) {
+    				return false;
+    			}
+    		}
+    		if(rM-1 < cartePresenti.length-1 && cM-1>0) {
+    			gdx = cartePresenti[rM+1][cM-1];//carta basso destra
+    			//considero angolo alto sinistra
+    			if(gdx != null && gdx.getAngolo()[0].getIcona() == Icona.ASSENTE) {
+    				return false;
+    			}	
+    		}
+    		if (rM < cartePresenti.length-1 && cM < cartePresenti[0].length-1) {
+    			sdx = cartePresenti[rM+1][cM+1];//carta alto destra
+    			//considero angolo basso sinistra
+    			if(sdx != null && sdx.getAngolo()[2].getIcona() == Icona.ASSENTE) {
+    				return false;
+    			}
+    		}
+    		if (rM>0 && cM <cartePresenti[0].length-1) {
+    			ssx = cartePresenti[rM-1][cM+1];//carta alto sinistra
+    			//considero angolo basso destra
+    			if(ssx != null && ssx.getAngolo()[3].getIcona() == Icona.ASSENTE) {
+    				return false;
+    	  	    }
+    		}
+    		//controllo se non esiste alcuna carta in diagonale rispetto a quella da posizionare
+    		//permette anche di non posizionare carte immediatamente ai lati delle carte già preseni sul tavolo
+    		if(gsx == null && gdx == null && sdx == null && ssx == null) {
+    			System.out.println("nessuna casella alle diagonali");
+    			return false;
+    		}
+    		return true;
+    	} catch (ArrayIndexOutOfBoundsException e) {
+    	        System.out.println("Coordinate non valide. Riprovare!");
+    	        return false;
+    	}
+    }
+    
+    public void aggiungiCarte(int rigaC,int colonnaC,Carta carta, Tavolo tavolo) {
+    	Carta[][] t=tavolo.getTabellone();
+    	t[rigaC-1][colonnaC-1]=carta;
+    	aggiornaAngoli(rigaC-1,colonnaC-1,tavolo);
+    	regniDisponibili.add(carta.getRegno());
+    	for (Angolo angolo : carta.getAngolo()) {
+    		Icona icona = angolo.getIcona();
+    		risorseDisponibili.add(icona);
     	}
     	
     }
@@ -134,7 +152,7 @@ public class Tavolo {
     private void aggiornaAngoli(int riga, int colonna, Tavolo tavolo) {
     	
     	Carta[][] t = tavolo.getTabellone();
-    	//considera gli angoli che vengono coperti dalla nuova carta, li rimuove dall'arraylist delle risorse disponibili e li setta a Icona.ASSENTE
+    	//considera gli angoli che vengono coperti dalla nuova carta, li rimuove dall'arraylist delle risorse disponibili e li setta a Icona.ASSENTE e nascosto=true
     	if (riga > 0 && colonna > 0 && t[riga-1][colonna-1] != null) {
             risorseDisponibili.remove(t[riga-1][colonna-1].getAngolo()[3].getIcona());
             t[riga-1][colonna-1].getAngolo()[3].setNascosto();
@@ -157,7 +175,16 @@ public class Tavolo {
     public void stampa() {
     	
     }
-    
+    public int getRighe() {
+		return righe;
+	}
+
+	public int getColonne() {
+		return colonne;
+	}
+    public void setTabellone(int x, int y, Carta c) {
+    	this.tabellone[x][y]=c;
+	}
 	public Carta[][] getTabellone() {
 		return tabellone;
 	}
@@ -169,6 +196,10 @@ public class Tavolo {
 	}
 	public Carta getCarta(int riga, int colonna) {
 		return tabellone[riga][colonna];
+	}
+	@Override
+	public String toString() {
+		return "Tavolo [tabellone=" + Arrays.toString(tabellone) + "]";
 	}
 
 }

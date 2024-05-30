@@ -12,13 +12,13 @@ public class Giocatore {
 	private int posizioneGiocatore;
 	private ArrayList<Carta> carteInMano;
 	
-	public Giocatore(String nome, int posizioneGiocatore, Tavolo tavolo, Segnalino segnalino, CartaObiettivo obiettivoPersonale) {
+	public Giocatore(String nome, int posizioneGiocatore, Tavolo tavolo, Segnalino segnalino, CartaObiettivo obiettivoPersonale,ArrayList<Carta> carteInMano) {
 		this.nome = nome;
 		this.posizioneGiocatore=posizioneGiocatore;
 		this.tavolo=tavolo;
 		this.segnalino=segnalino;
 		this.obiettivoPersonale=obiettivoPersonale;
-		this.carteInMano=new ArrayList<>();
+		this.carteInMano=carteInMano;
 	}
 	
 	public ArrayList<Carta> getCarteInMano() {

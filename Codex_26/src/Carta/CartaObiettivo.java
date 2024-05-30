@@ -1,17 +1,14 @@
 package Carta;
 
 import java.util.ArrayList;
-import Codex_26
-
-import java.util.ArrayList;
+import java.util.Arrays;
 
 class CartaObiettivo extends Carta {
 	
 	private final int punteggio;
-    private boolean girata;
     private Icona[] risorsaNecessaria=new Icona[4];
     private Icona[][] risorsaNecessaria2=new Icona[3][3];
-    private Icona[][] risorsaNecessaria3=new Icona[4][2];
+    private Icona[][] risorsaNecessaria3=new Icona[4][3];
     private final int type;
     private final TipoCarta n;
     
@@ -20,7 +17,6 @@ class CartaObiettivo extends Carta {
     public CartaObiettivo(int punteggio, Icona r1, Icona r2, Icona r3) {
     	this.n=TipoCarta.OBIETTIVO;
     	this.type=0;
-    	this.girata=true;
     	this.punteggio=punteggio;
     	this.risorsaNecessaria[0]=r1;
     	this.risorsaNecessaria[1]=r2;
@@ -32,7 +28,6 @@ class CartaObiettivo extends Carta {
     //tipo 1 indica costruttore per matrice 3x3, tipo 2 matrice 4x2
     public CartaObiettivo(int punteggio,int type, Icona reg11, Icona reg12, Icona reg13,Icona reg21, Icona reg22, Icona reg23,Icona reg31, Icona reg32, Icona reg33) {
     	this.n=TipoCarta.OBIETTIVO;
-    	this.girata=true;
     	this.type=1;
     	this.punteggio=punteggio;
     	this.risorsaNecessaria2[0][0]=reg11;
@@ -48,7 +43,6 @@ class CartaObiettivo extends Carta {
     
     public CartaObiettivo(int punteggio,int type, Icona reg11, Icona reg12, Icona reg21, Icona reg22, Icona reg31, Icona reg32, Icona reg41, Icona reg42) {
     	this.n=TipoCarta.OBIETTIVO;
-    	this.girata=true;
     	this.type=2;
     	this.punteggio=punteggio;
     	this.risorsaNecessaria3[0][0]=reg11;
@@ -185,6 +179,12 @@ class CartaObiettivo extends Carta {
     @Override
 	public Icona getRegno() {
 		return Icona.ASSENTE;
+	}
+    @Override
+	public String toString() {
+		return "CartaObiettivo [punteggio=" + punteggio + ", risorsaNecessaria=" + Arrays.toString(risorsaNecessaria)
+				+ ", risorsaNecessaria2=" + Arrays.toString(risorsaNecessaria2) + ", risorsaNecessaria3="
+				+ Arrays.toString(risorsaNecessaria3);
 	}
     
 }
