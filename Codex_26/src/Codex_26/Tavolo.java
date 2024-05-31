@@ -66,32 +66,29 @@ public class Tavolo {
     
     public boolean controllaPosCarta(int rigaC, int colonnaC,Tavolo t) {
     	try {
-    		Carta[][] cartePresenti=t.getTabellone();
+    		Carta[][] cartePresenti=tabellone;
     		int x=getRighe();
     		int y=getColonne();
     		int rM=rigaC-1;
     		int cM=colonnaC-1;
+    		//coordinate validi o meno con epansione
+    		if(rigaC>x || colonnaC>y || rigaC<1 || colonnaC<1) {
+    			t=espandiTavolo(rigaC,colonnaC);
+    			cartePresenti = tabellone;
+    			x = getRighe();
+    			y = getColonne();
+    		}
     		//controllo se ci sono già carte in cella richiesta
-    		if(cartePresenti[rM][cM]!=null) {
+    		if(cartePresenti[rigaC][colonnaC]!=null) {
     			System.out.println("casella occupata");
     			return false;
     		}
-    		//coordinate validi o meno con epansione
-    		if(rigaC>x || colonnaC>y || rigaC<1 || colonnaC<1) {
-    			t=t.espandiTavolo(rigaC,colonnaC);
-    			cartePresenti = t.getTabellone();
-    			x = t.getRighe();
-    			y = t.getColonne();
-    		}
-    		rM=rigaC-1;
-    		cM=colonnaC-1;
     		if(rigaC>x || colonnaC>y || rigaC<1 || colonnaC< 1) {
 				return false;
 			}
     		if (cartePresenti[rigaC][colonnaC] != null) {
                 return false;
             }
-    		
     		//controllo Icone agli angoli delle carte poste diagonalmente
     		//prendo le 4 carte direttamente in diagonale a quella che voglio piazzare
     		//di tali carte considero gli angoli d'interesse per la carta da piazzare
@@ -137,9 +134,20 @@ public class Tavolo {
     	}
     }
     
-    public void aggiungiCarte(int rigaC,int colonnaC,Carta carta, Tavolo tavolo) {
+    /*public void aggiungiCarte(int rigaC,int colonnaC,Carta carta, Tavolo tavolo) {
     	Carta[][] t=tavolo.getTabellone();
     	t[rigaC-1][colonnaC-1]=carta;
+    	aggiornaAngoli(rigaC-1,colonnaC-1,tavolo);
+    	regniDisponibili.add(carta.getRegno());
+    	for (Angolo angolo : carta.getAngolo()) {
+    		Icona icona = angolo.getIcona();
+    		risorseDisponibili.add(icona);
+    	}
+    	
+    }*/
+    
+    public void aggiungiCarte(int rigaC,int colonnaC,Carta carta, Tavolo tavolo) {
+    	tabellone[rigaC-1][colonnaC-1]=carta;
     	aggiornaAngoli(rigaC-1,colonnaC-1,tavolo);
     	regniDisponibili.add(carta.getRegno());
     	for (Angolo angolo : carta.getAngolo()) {

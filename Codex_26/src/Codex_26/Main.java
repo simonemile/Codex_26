@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import Carta.*;
 
 public class Main {
 
@@ -112,7 +113,7 @@ public class Main {
 	        	
 	         //svolgimento del turno
 	         int turno=1;
-	         System.out.println("Regolamento: \nPer decidere se posizionare una carta fronte o retro premere rispettivamente u, d \nPer decidere posizione della carta indicare numero delle coordinate desiderate\n");
+	         System.out.println("Istruzioni: \nPer decidere se posizionare una carta fronte o retro premere rispettivamente u, d \nPer decidere posizione della carta indicare numero delle coordinate desiderate\n");
 	         System.out.println("Nella selezione di azioni del turno 1-2: prendono carte risorse scoperte, 3-4: prendono carte oro scoperte, 5:pesca dal mazzo risorsa, 6: pesca dal mazzo oro");
 	         do {
 	        	 System.out.println("Turno numero: "+turno);

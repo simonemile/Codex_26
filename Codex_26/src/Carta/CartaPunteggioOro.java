@@ -1,8 +1,10 @@
 package Carta;
 
+import java.util.ArrayList;
+
 import Codex_26.*;
 
-class CartaPunteggioOro extends Carta {
+public class CartaPunteggioOro extends Carta {
 	private Angolo[] angoliFronte=new Angolo[4];
 	private Angolo[] angoliRetro=new Angolo[5];
 	private final Icona[] risorseMinime=new Icona[5];

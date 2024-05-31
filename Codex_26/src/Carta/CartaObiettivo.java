@@ -3,7 +3,9 @@ package Carta;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-class CartaObiettivo extends Carta {
+import Codex_26.Tavolo;
+
+public class CartaObiettivo extends Carta {
 	
 	private final int punteggio;
     private Icona[] risorsaNecessaria=new Icona[4];
